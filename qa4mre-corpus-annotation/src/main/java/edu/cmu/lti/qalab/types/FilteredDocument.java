@@ -1,6 +1,6 @@
 
 
-/* First created by JCasGen Sun Feb 03 13:01:15 EST 2013 */
+/* First created by JCasGen Sat Feb 09 14:12:08 EST 2013 */
 package edu.cmu.lti.qalab.types;
 
 import org.apache.uima.jcas.JCas; 
@@ -10,16 +10,16 @@ import org.apache.uima.jcas.cas.TOP_Type;
 import org.apache.uima.jcas.tcas.Annotation;
 
 
-/** 
+/** After removal of noise from corpus
  * Updated by JCasGen Sat Feb 09 14:27:07 EST 2013
  * XML source: /media/alkesh/Windows7_OS/Users/alkesh/git/qalabcmu/qa4mre-corpus-annotation/src/main/resources/TypeSystemDescriptor.xml
  * @generated */
-public class SourceDocument extends Annotation {
+public class FilteredDocument extends Annotation {
   /** @generated
    * @ordered 
    */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = JCasRegistry.register(SourceDocument.class);
+  public final static int typeIndexID = JCasRegistry.register(FilteredDocument.class);
   /** @generated
    * @ordered 
    */
@@ -31,23 +31,23 @@ public class SourceDocument extends Annotation {
  
   /** Never called.  Disable default constructor
    * @generated */
-  protected SourceDocument() {/* intentionally empty block */}
+  protected FilteredDocument() {/* intentionally empty block */}
     
   /** Internal - constructor used by generator 
    * @generated */
-  public SourceDocument(int addr, TOP_Type type) {
+  public FilteredDocument(int addr, TOP_Type type) {
     super(addr, type);
     readObject();
   }
   
   /** @generated */
-  public SourceDocument(JCas jcas) {
+  public FilteredDocument(JCas jcas) {
     super(jcas);
     readObject();   
   } 
 
   /** @generated */  
-  public SourceDocument(JCas jcas, int begin, int end) {
+  public FilteredDocument(JCas jcas, int begin, int end) {
     super(jcas);
     setBegin(begin);
     setEnd(end);
@@ -68,16 +68,16 @@ public class SourceDocument extends Annotation {
   /** getter for text - gets 
    * @generated */
   public String getText() {
-    if (SourceDocument_Type.featOkTst && ((SourceDocument_Type)jcasType).casFeat_text == null)
-      jcasType.jcas.throwFeatMissing("text", "edu.cmu.lti.qalab.types.SourceDocument");
-    return jcasType.ll_cas.ll_getStringValue(addr, ((SourceDocument_Type)jcasType).casFeatCode_text);}
+    if (FilteredDocument_Type.featOkTst && ((FilteredDocument_Type)jcasType).casFeat_text == null)
+      jcasType.jcas.throwFeatMissing("text", "edu.cmu.lti.qalab.types.FilteredDocument");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((FilteredDocument_Type)jcasType).casFeatCode_text);}
     
   /** setter for text - sets  
    * @generated */
   public void setText(String v) {
-    if (SourceDocument_Type.featOkTst && ((SourceDocument_Type)jcasType).casFeat_text == null)
-      jcasType.jcas.throwFeatMissing("text", "edu.cmu.lti.qalab.types.SourceDocument");
-    jcasType.ll_cas.ll_setStringValue(addr, ((SourceDocument_Type)jcasType).casFeatCode_text, v);}    
+    if (FilteredDocument_Type.featOkTst && ((FilteredDocument_Type)jcasType).casFeat_text == null)
+      jcasType.jcas.throwFeatMissing("text", "edu.cmu.lti.qalab.types.FilteredDocument");
+    jcasType.ll_cas.ll_setStringValue(addr, ((FilteredDocument_Type)jcasType).casFeatCode_text, v);}    
    
     
   //*--------------*
@@ -86,16 +86,16 @@ public class SourceDocument extends Annotation {
   /** getter for id - gets 
    * @generated */
   public String getId() {
-    if (SourceDocument_Type.featOkTst && ((SourceDocument_Type)jcasType).casFeat_id == null)
-      jcasType.jcas.throwFeatMissing("id", "edu.cmu.lti.qalab.types.SourceDocument");
-    return jcasType.ll_cas.ll_getStringValue(addr, ((SourceDocument_Type)jcasType).casFeatCode_id);}
+    if (FilteredDocument_Type.featOkTst && ((FilteredDocument_Type)jcasType).casFeat_id == null)
+      jcasType.jcas.throwFeatMissing("id", "edu.cmu.lti.qalab.types.FilteredDocument");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((FilteredDocument_Type)jcasType).casFeatCode_id);}
     
   /** setter for id - sets  
    * @generated */
   public void setId(String v) {
-    if (SourceDocument_Type.featOkTst && ((SourceDocument_Type)jcasType).casFeat_id == null)
-      jcasType.jcas.throwFeatMissing("id", "edu.cmu.lti.qalab.types.SourceDocument");
-    jcasType.ll_cas.ll_setStringValue(addr, ((SourceDocument_Type)jcasType).casFeatCode_id, v);}    
+    if (FilteredDocument_Type.featOkTst && ((FilteredDocument_Type)jcasType).casFeat_id == null)
+      jcasType.jcas.throwFeatMissing("id", "edu.cmu.lti.qalab.types.FilteredDocument");
+    jcasType.ll_cas.ll_setStringValue(addr, ((FilteredDocument_Type)jcasType).casFeatCode_id, v);}    
   }
 
     

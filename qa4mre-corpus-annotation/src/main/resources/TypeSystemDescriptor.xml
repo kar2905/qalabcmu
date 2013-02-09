@@ -88,5 +88,22 @@
         </featureDescription>
       </features>
     </typeDescription>
+    <typeDescription>
+      <name>edu.cmu.lti.qalab.types.FilteredDocument</name>
+      <description>After removal of noise from corpus</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>text</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>id</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
   </types>
 </typeSystemDescription>

@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.cas.TOP_Type;
 
 /** 
- * Updated by JCasGen Sat Feb 09 14:27:07 EST 2013
+ * Updated by JCasGen Sun Feb 03 13:05:01 EST 2013
  * @generated */
 public class GeneTag_Type extends TOP_Type {
   /** @generated */

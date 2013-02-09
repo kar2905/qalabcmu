@@ -23,7 +23,7 @@ import edu.cmu.lti.qalab.types.SourceDocument;
  * 
  *         GeneFileReader reads the input file and convert each sentence in CAS
  */
-public class AlzheimerNXMLReader extends CollectionReader_ImplBase {
+public class QA4MREXMIReader extends CollectionReader_ImplBase {
 
 	File documents[] = null;
 	int nCurrFile = 0;
