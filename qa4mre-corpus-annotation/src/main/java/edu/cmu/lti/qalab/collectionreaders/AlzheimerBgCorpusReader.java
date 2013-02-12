@@ -28,19 +28,22 @@ public class AlzheimerBgCorpusReader extends CollectionReader_ImplBase {
 	File documents[] = null;
 	int nCurrFile = 0;
 
-	
 	@Override
 	public void initialize() throws ResourceInitializationException {
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		File inputDir = new File(
-				(String) getConfigParameterValue("INPUT_DIR"));
-		documents = inputDir.listFiles(new OnlyNXML("txt"));
-		System.out.println("Total files: "+documents.length);
+		try {
+			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+			File inputDir = new File(
+					(String) getConfigParameterValue("INPUT_DIR"));
+			documents = inputDir.listFiles(new OnlyNXML("txt"));
+			System.out.println("Total files: " + documents.length);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void getNext(CAS aCAS) throws IOException, CollectionException {
-		
+
 		JCas jcas;
 		try {
 			jcas = aCAS.getJCas();
@@ -53,25 +56,24 @@ public class AlzheimerBgCorpusReader extends CollectionReader_ImplBase {
 		String text = "";
 		try {
 			bfr = new BufferedReader(new FileReader(documents[nCurrFile]));
-			char chars[]=new char[4096];
-			while((bfr.read(chars))!=-1){
-				text+=new String(chars).trim();
-				chars=null;
-				chars=new char[4096];
+			char chars[] = new char[4096];
+			while ((bfr.read(chars)) != -1) {
+				text += new String(chars).trim();
+				chars = null;
+				chars = new char[4096];
 			}
-			text=text.trim();
+			text = text.trim();
 			System.out.println("Read: "
 					+ documents[nCurrFile].getAbsolutePath());
 
 			// put document in CAS
 			jcas.setDocumentText(text);
-		}catch (Exception e) {
-			e.printStackTrace();			
-		} 
-		finally {
-			if(bfr!=null){
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (bfr != null) {
 				bfr.close();
-				bfr=null;
+				bfr = null;
 			}
 		}
 
@@ -90,18 +92,19 @@ public class AlzheimerBgCorpusReader extends CollectionReader_ImplBase {
 
 	@Override
 	public void close() throws IOException {
-			System.out.println("Closing AlzheimerNXMLReader");
+		System.out.println("Closing AlzheimerNXMLReader");
 	}
 
 	@Override
 	public Progress[] getProgress() {
-		return new Progress[] { new ProgressImpl(nCurrFile,
-				documents.length, Progress.ENTITIES) };
+		return new Progress[] { new ProgressImpl(nCurrFile, documents.length,
+				Progress.ENTITIES) };
 	}
 
 	@Override
 	public boolean hasNext() throws IOException, CollectionException {
-		return nCurrFile < documents.length;
+		return nCurrFile < 10;
+		// return nCurrFile < documents.length;
 	}
 
 	private class OnlyNXML implements FilenameFilter {

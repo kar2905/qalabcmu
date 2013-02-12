@@ -7,11 +7,12 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.JCasRegistry;
 import org.apache.uima.jcas.cas.TOP_Type;
 
+import org.apache.uima.jcas.cas.FSList;
 import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Sat Feb 09 14:27:07 EST 2013
+ * Updated by JCasGen Sat Feb 09 22:36:15 EST 2013
  * XML source: /media/alkesh/Windows7_OS/Users/alkesh/git/qalabcmu/qa4mre-corpus-annotation/src/main/resources/TypeSystemDescriptor.xml
  * @generated */
 public class Sentence extends Annotation {
@@ -96,6 +97,60 @@ public class Sentence extends Annotation {
     if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_text == null)
       jcasType.jcas.throwFeatMissing("text", "edu.cmu.lti.qalab.types.Sentence");
     jcasType.ll_cas.ll_setStringValue(addr, ((Sentence_Type)jcasType).casFeatCode_text, v);}    
+   
+    
+  //*--------------*
+  //* Feature: qualityScore
+
+  /** getter for qualityScore - gets 
+   * @generated */
+  public double getQualityScore() {
+    if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_qualityScore == null)
+      jcasType.jcas.throwFeatMissing("qualityScore", "edu.cmu.lti.qalab.types.Sentence");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((Sentence_Type)jcasType).casFeatCode_qualityScore);}
+    
+  /** setter for qualityScore - sets  
+   * @generated */
+  public void setQualityScore(double v) {
+    if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_qualityScore == null)
+      jcasType.jcas.throwFeatMissing("qualityScore", "edu.cmu.lti.qalab.types.Sentence");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((Sentence_Type)jcasType).casFeatCode_qualityScore, v);}    
+   
+    
+  //*--------------*
+  //* Feature: dependencyList
+
+  /** getter for dependencyList - gets 
+   * @generated */
+  public FSList getDependencyList() {
+    if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_dependencyList == null)
+      jcasType.jcas.throwFeatMissing("dependencyList", "edu.cmu.lti.qalab.types.Sentence");
+    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Sentence_Type)jcasType).casFeatCode_dependencyList)));}
+    
+  /** setter for dependencyList - sets  
+   * @generated */
+  public void setDependencyList(FSList v) {
+    if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_dependencyList == null)
+      jcasType.jcas.throwFeatMissing("dependencyList", "edu.cmu.lti.qalab.types.Sentence");
+    jcasType.ll_cas.ll_setRefValue(addr, ((Sentence_Type)jcasType).casFeatCode_dependencyList, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: tokenList
+
+  /** getter for tokenList - gets 
+   * @generated */
+  public FSList getTokenList() {
+    if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_tokenList == null)
+      jcasType.jcas.throwFeatMissing("tokenList", "edu.cmu.lti.qalab.types.Sentence");
+    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Sentence_Type)jcasType).casFeatCode_tokenList)));}
+    
+  /** setter for tokenList - sets  
+   * @generated */
+  public void setTokenList(FSList v) {
+    if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_tokenList == null)
+      jcasType.jcas.throwFeatMissing("tokenList", "edu.cmu.lti.qalab.types.Sentence");
+    jcasType.ll_cas.ll_setRefValue(addr, ((Sentence_Type)jcasType).casFeatCode_tokenList, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     

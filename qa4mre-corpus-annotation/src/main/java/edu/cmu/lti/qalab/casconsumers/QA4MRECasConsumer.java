@@ -4,9 +4,12 @@ import java.io.File;
 
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
+import org.apache.uima.cas.FSIterator;
 import org.apache.uima.collection.CasConsumer_ImplBase;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceProcessException;
+
+import edu.cmu.lti.qalab.types.SourceDocument;
 
 public class QA4MRECasConsumer extends CasConsumer_ImplBase {
 
@@ -35,14 +38,19 @@ public class QA4MRECasConsumer extends CasConsumer_ImplBase {
 	@Override
 	public void processCas(CAS aCAS) throws ResourceProcessException {
 
-		JCas jcas;
+		JCas jCas;
 		try {
-			jcas = aCAS.getJCas();
+			jCas = aCAS.getJCas();
 		} catch (CASException e) {
 			throw new ResourceProcessException(e);
 		}
-
-		String text=jcas.getDocumentText();
+		FSIterator it = jCas
+				.getAnnotationIndex(SourceDocument.type).iterator();
+		SourceDocument filtDoc=null;
+		if(it.hasNext()){
+			filtDoc=(SourceDocument)it.next();
+		}
+		String text=filtDoc.getText();
 		try {
 			System.out.println(text);		
 		} catch (Exception e) {
