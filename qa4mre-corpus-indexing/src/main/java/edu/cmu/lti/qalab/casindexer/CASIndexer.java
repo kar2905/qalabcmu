@@ -15,7 +15,7 @@ import org.apache.uima.resource.ResourceInitializationException;
 import org.uimafit.util.JCasUtil;
 
 import edu.cmu.lti.oaqa.core.provider.solr.SolrWrapper;
-import edu.cmu.lti.qalab.solrutils.Utils;
+import edu.cmu.lti.qalab.solrutils.SolrUtils;
 import edu.cmu.lti.qalab.types.Sentence;
 import edu.cmu.lti.qalab.types.SourceDocument;
 
@@ -50,7 +50,7 @@ public class CASIndexer extends JCasAnnotator_ImplBase {
 
 		try {
 			// try to get indexschema so that you can know the fields available
-			indexSchema = Utils.getIndexSchema(serverUrl, coreName, schemaName);
+			indexSchema = SolrUtils.getIndexSchema(serverUrl, coreName, schemaName);
 			HashMap<String, Object> indexMap = new HashMap<String, Object>();
 
 			String id = srcDoc.getId();

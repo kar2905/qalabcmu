@@ -103,8 +103,8 @@ public class AlzheimerBgCorpusReader extends CollectionReader_ImplBase {
 
 	@Override
 	public boolean hasNext() throws IOException, CollectionException {
-		return nCurrFile < 10;
-		// return nCurrFile < documents.length;
+		//return nCurrFile < 10;
+		 return nCurrFile < documents.length;
 	}
 
 	private class OnlyNXML implements FilenameFilter {

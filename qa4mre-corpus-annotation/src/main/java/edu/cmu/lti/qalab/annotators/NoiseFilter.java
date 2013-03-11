@@ -4,59 +4,74 @@ import java.util.HashSet;
 
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
-import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.jcas.cas.FSList;
 
+import edu.cmu.lti.qalab.types.Sentence;
 import edu.cmu.lti.qalab.types.SourceDocument;
+import edu.cmu.lti.qalab.utils.Utils;
 import edu.stanford.nlp.util.StringUtils;
 
 public class NoiseFilter extends JCasAnnotator_ImplBase {
 
-	double NOISE_THRESHOLD=0.10;
+	double QUALITY_THRESHOLD=0.10;
 	int MIN_WORDS=5;
 	int MIN_LENGTH=25;
 	
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
-
-		FSIterator it = jCas
-				.getAnnotationIndex(SourceDocument.type).iterator();
-		SourceDocument srcDoc=null;
-		if(it.hasNext()){
-			srcDoc=(SourceDocument)it.next();
-		}
-		
-		String id = srcDoc.getId();
+		//System.out.println("******Entered into process of NoiseFilter");
+		SourceDocument srcDoc=Utils.getSourceDocumentFromCAS(jCas);
+		//String id = srcDoc.getId();
 		String docText = srcDoc.getText();
 
 		try {
-			String lines[] = docText.split("[\\n]");
+			//String lines[] = docText.split("[\\n]");
+			FSList sentList=srcDoc.getSentenceList();
 			String filteredText = "";
-			for (int i = 0; i < lines.length; i++) {
-				lines[i]=lines[i].trim();
-				if(lines[i].equals("")){
-					continue;
+			int i=0;
+			while (true) {
+			//	System.out.println("Processing sentence "+i);
+				i++;
+				Sentence sentence = null;
+				try {
+					sentence = (Sentence) sentList.getNthElement(i);
+				} catch (Exception e) {
+					break;
 				}
-				double qualityScore = this.getSentQuality(lines[i]);
 				
-				if(qualityScore>NOISE_THRESHOLD){
+				String sentText=sentence.getText().trim();
+				if(sentText.equals("")){
 					continue;
 				}
-				//System.out.println(qualityScore+"\t"+lines[i]);
-				filteredText+=lines[i];
+				
+				double qualityScore = this.getSentQuality(sentText);
+				
+				if(qualityScore<QUALITY_THRESHOLD){
+					//sentence.removeFromIndexes();
+					continue;
+				}
+				//System.out.println("****Quality Score: "+qualityScore);
+				sentence.setQualityScore(qualityScore);
+				sentence.addToIndexes();
+				filteredText+=sentText+" ";
+				
 			}
-
+						
 			System.out.println("Difference between size of (SourceDocument - FilteredDocument): "+(docText.length()-filteredText.length()));
 		
 			SourceDocument annotation = new SourceDocument(jCas);
-			annotation.setId(id);
-			annotation.setText(filteredText);
+			//annotation.setId(id);
+			annotation.setFilteredText(filteredText);
 			annotation.addToIndexes();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	
+	
 	public double getSentQuality(String sent) throws Exception {
 		String words[] = sent.split("[\\W]");
 
