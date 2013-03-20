@@ -15,6 +15,10 @@ import org.apache.uima.jcas.cas.TOP;
 import org.uimafit.util.JCasUtil;
 
 import edu.cmu.lti.qalab.types.Dependency;
+import edu.cmu.lti.qalab.types.NER;
+import edu.cmu.lti.qalab.types.NounPhrase;
+import edu.cmu.lti.qalab.types.Question;
+import edu.cmu.lti.qalab.types.QuestionAnswerSet;
 import edu.cmu.lti.qalab.types.Sentence;
 import edu.cmu.lti.qalab.types.SourceDocument;
 import edu.cmu.lti.qalab.types.TestDocument;
@@ -53,6 +57,72 @@ public class Utils {
 
 		return list;
 	}
+	
+	/**
+	 * Creates FeatureStructure List from questionList
+	 * 
+	 * @param <T>
+	 * 
+	 * @param aJCas
+	 * @param aCollection
+	 * @return FSList
+	 */
+
+	public static FSList createQuestionList(JCas aJCas,
+			Collection<Question> aCollection) {
+		if (aCollection.size() == 0) {
+			return new EmptyFSList(aJCas);
+		}
+
+		NonEmptyFSList head = new NonEmptyFSList(aJCas);
+		NonEmptyFSList list = head;
+		Iterator<Question> i = aCollection.iterator();
+		while (i.hasNext()) {
+			head.setHead(i.next());
+			if (i.hasNext()) {
+				head.setTail(new NonEmptyFSList(aJCas));
+				head = (NonEmptyFSList) head.getTail();
+			} else {
+				head.setTail(new EmptyFSList(aJCas));
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Creates FeatureStructure List from questionList
+	 * 
+	 * @param <T>
+	 * 
+	 * @param aJCas
+	 * @param aCollection
+	 * @return FSList
+	 */
+
+	public static FSList createQuestionAnswerSet(JCas aJCas,
+			Collection<QuestionAnswerSet> aCollection) {
+		if (aCollection.size() == 0) {
+			return new EmptyFSList(aJCas);
+		}
+
+		NonEmptyFSList head = new NonEmptyFSList(aJCas);
+		NonEmptyFSList list = head;
+		Iterator<QuestionAnswerSet> i = aCollection.iterator();
+		while (i.hasNext()) {
+			head.setHead(i.next());
+			if (i.hasNext()) {
+				head.setTail(new NonEmptyFSList(aJCas));
+				head = (NonEmptyFSList) head.getTail();
+			} else {
+				head.setTail(new EmptyFSList(aJCas));
+			}
+		}
+
+		return list;
+	}
+
+
 
 	/**
 	 * @param aJCas
@@ -80,7 +150,58 @@ public class Utils {
 		return list;
 	}
 
-	
+	/**
+	 * @param aJCas
+	 * @param aCollection
+	 * @return
+	 */
+	public static FSList createNounPhraseList(JCas aJCas, Collection<NounPhrase> aCollection) {
+		if (aCollection.size() == 0) {
+			return new EmptyFSList(aJCas);
+		}
+
+		NonEmptyFSList head = new NonEmptyFSList(aJCas);
+		NonEmptyFSList list = head;
+		Iterator<NounPhrase> i = aCollection.iterator();
+		while (i.hasNext()) {
+			head.setHead(i.next());
+			if (i.hasNext()) {				
+				head.setTail(new NonEmptyFSList(aJCas));
+				head = (NonEmptyFSList) head.getTail();
+			} else {
+				head.setTail(new EmptyFSList(aJCas));
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * @param aJCas
+	 * @param aCollection
+	 * @return
+	 */
+	public static FSList createNERList(JCas aJCas, Collection<NER> aCollection) {
+		if (aCollection.size() == 0) {
+			return new EmptyFSList(aJCas);
+		}
+
+		NonEmptyFSList head = new NonEmptyFSList(aJCas);
+		NonEmptyFSList list = head;
+		Iterator<NER> i = aCollection.iterator();
+		while (i.hasNext()) {
+			head.setHead(i.next());
+			if (i.hasNext()) {				
+				head.setTail(new NonEmptyFSList(aJCas));
+				head = (NonEmptyFSList) head.getTail();
+			} else {
+				head.setTail(new EmptyFSList(aJCas));
+			}
+		}
+
+		return list;
+	}
+
 
 	public static FSList createDependencyList(JCas aJCas,
 			Collection<SemanticGraphEdge> aCollection) {
@@ -153,7 +274,113 @@ public class Utils {
 
 		return sentenceList;
 	}
+	
+	public static ArrayList<QuestionAnswerSet> getQuestionAnswerSetFromTestDocCAS(JCas jCas) {
 
+		TestDocument testDoc = Utils.getTestDocumentFromCAS(jCas);
+		FSList fsQAList = testDoc.getQaList();
+		ArrayList<QuestionAnswerSet> qaSetList = new ArrayList<QuestionAnswerSet>();
+		int i = 0;
+		while (true) {
+
+			QuestionAnswerSet qaSet = null;
+			try {
+				qaSet = (QuestionAnswerSet) fsQAList.getNthElement(i);
+				
+			} catch (Exception e) {
+				break;
+			}
+			qaSetList.add(qaSet);
+			i++;
+		}
+
+		return qaSetList;
+	}
+
+	
+	public static ArrayList<Question> getQuestionListFromTestDocCAS(JCas jCas) {
+
+		TestDocument testDoc = Utils.getTestDocumentFromCAS(jCas);
+		FSList fsQAList = testDoc.getQaList();
+		ArrayList<Question> questionList = new ArrayList<Question>();
+		int i = 0;
+		while (true) {
+
+			Question question = null;
+			try {
+				QuestionAnswerSet qaSet = (QuestionAnswerSet) fsQAList.getNthElement(i);
+				question=qaSet.getQuestion();
+			} catch (Exception e) {
+				break;
+			}
+			questionList.add(question);
+			i++;
+		}
+
+		return questionList;
+	}
+
+	public static ArrayList<Token> getTokenListFromSentenceList(Sentence sentence) {
+
+		FSList fsTokenList=sentence.getTokenList();
+		ArrayList<Token> tokenList = new ArrayList<Token>();
+		int i = 0;
+		while (true) {
+
+			Token token = null;
+			try {
+				token = (Token) fsTokenList.getNthElement(i);
+			} catch (Exception e) {
+				break;
+			}
+			tokenList.add(token);
+			i++;
+		}
+
+		return tokenList;
+	}
+	
+	public static ArrayList<NounPhrase> getNounPhraseListFromQuestionList(Question question) {
+
+		FSList fsNounList=question.getNounList();
+		ArrayList<NounPhrase> nounPhraseList = new ArrayList<NounPhrase>();
+		int i = 0;
+		while (true) {
+
+			NounPhrase nounPhrase = null;
+			try {
+				nounPhrase = (NounPhrase) fsNounList.getNthElement(i);
+			} catch (Exception e) {
+				break;
+			}
+			nounPhraseList.add(nounPhrase);
+			i++;
+		}
+
+		return nounPhraseList;
+	}
+
+
+	public static ArrayList<Token> getTokenListFromQuestion(Question question) {
+
+		FSList fsTokenList=question.getTokenList();
+		ArrayList<Token> tokenList = new ArrayList<Token>();
+		int i = 0;
+		while (true) {
+
+			Token token = null;
+			try {
+				token = (Token) fsTokenList.getNthElement(i);
+			} catch (Exception e) {
+				break;
+			}
+			tokenList.add(token);
+			i++;
+		}
+
+		return tokenList;
+	}
+	
 	public static ArrayList<Sentence> getSentenceListFromSourceDocCAS(JCas jCas) {
 
 		SourceDocument srcDoc = Utils.getSourceDocumentFromCAS(jCas);
@@ -175,7 +402,7 @@ public class Utils {
 		return sentenceList;
 	}
 
-	public static <T extends TOP> ArrayList<T> iterateFSList(FSList list,
+	public static <T extends TOP> ArrayList<T> fromFSListToCollection(FSList list,
 			Class<T> classType) {
 
 		Collection<T> myCollection = JCasUtil.select(list, classType);

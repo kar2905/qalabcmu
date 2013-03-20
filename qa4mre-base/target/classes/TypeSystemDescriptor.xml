@@ -41,6 +41,18 @@
           <description/>
           <rangeTypeName>uima.cas.Boolean</rangeTypeName>
         </featureDescription>
+        <featureDescription>
+          <name>phraseList</name>
+          <description/>
+          <rangeTypeName>uima.cas.FSList</rangeTypeName>
+          <elementType>edu.cmu.lti.qalab.types.NounPhrase</elementType>
+        </featureDescription>
+        <featureDescription>
+          <name>nerList</name>
+          <description/>
+          <rangeTypeName>uima.cas.FSList</rangeTypeName>
+          <elementType>edu.cmu.lti.qalab.types.NER</elementType>
+        </featureDescription>
       </features>
     </typeDescription>
     <typeDescription>
@@ -68,18 +80,6 @@
           <description/>
           <rangeTypeName>uima.cas.FSList</rangeTypeName>
           <elementType>edu.cmu.lti.qalab.types.Sentence</elementType>
-        </featureDescription>
-        <featureDescription>
-          <name>phraseList</name>
-          <description/>
-          <rangeTypeName>uima.cas.FSList</rangeTypeName>
-          <elementType>edu.cmu.lti.qalab.types.Phrase</elementType>
-        </featureDescription>
-        <featureDescription>
-          <name>nerList</name>
-          <description/>
-          <rangeTypeName>uima.cas.FSList</rangeTypeName>
-          <elementType>edu.cmu.lti.qalab.types.NER</elementType>
         </featureDescription>
       </features>
     </typeDescription>

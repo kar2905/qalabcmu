@@ -12,7 +12,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Fri Feb 22 06:13:34 EST 2013
+ * Updated by JCasGen Wed Mar 13 13:14:06 EDT 2013
  * XML source: /media/alkesh/Windows7_OS/Users/alkesh/git/qalabcmu/qa4mre-base/src/main/resources/TypeSystemDescriptor.xml
  * @generated */
 public class SourceDocument extends Annotation {
@@ -133,42 +133,6 @@ public class SourceDocument extends Annotation {
     if (SourceDocument_Type.featOkTst && ((SourceDocument_Type)jcasType).casFeat_sentenceList == null)
       jcasType.jcas.throwFeatMissing("sentenceList", "edu.cmu.lti.qalab.types.SourceDocument");
     jcasType.ll_cas.ll_setRefValue(addr, ((SourceDocument_Type)jcasType).casFeatCode_sentenceList, jcasType.ll_cas.ll_getFSRef(v));}    
-   
-    
-  //*--------------*
-  //* Feature: phraseList
-
-  /** getter for phraseList - gets 
-   * @generated */
-  public FSList getPhraseList() {
-    if (SourceDocument_Type.featOkTst && ((SourceDocument_Type)jcasType).casFeat_phraseList == null)
-      jcasType.jcas.throwFeatMissing("phraseList", "edu.cmu.lti.qalab.types.SourceDocument");
-    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((SourceDocument_Type)jcasType).casFeatCode_phraseList)));}
-    
-  /** setter for phraseList - sets  
-   * @generated */
-  public void setPhraseList(FSList v) {
-    if (SourceDocument_Type.featOkTst && ((SourceDocument_Type)jcasType).casFeat_phraseList == null)
-      jcasType.jcas.throwFeatMissing("phraseList", "edu.cmu.lti.qalab.types.SourceDocument");
-    jcasType.ll_cas.ll_setRefValue(addr, ((SourceDocument_Type)jcasType).casFeatCode_phraseList, jcasType.ll_cas.ll_getFSRef(v));}    
-   
-    
-  //*--------------*
-  //* Feature: nerList
-
-  /** getter for nerList - gets 
-   * @generated */
-  public FSList getNerList() {
-    if (SourceDocument_Type.featOkTst && ((SourceDocument_Type)jcasType).casFeat_nerList == null)
-      jcasType.jcas.throwFeatMissing("nerList", "edu.cmu.lti.qalab.types.SourceDocument");
-    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((SourceDocument_Type)jcasType).casFeatCode_nerList)));}
-    
-  /** setter for nerList - sets  
-   * @generated */
-  public void setNerList(FSList v) {
-    if (SourceDocument_Type.featOkTst && ((SourceDocument_Type)jcasType).casFeat_nerList == null)
-      jcasType.jcas.throwFeatMissing("nerList", "edu.cmu.lti.qalab.types.SourceDocument");
-    jcasType.ll_cas.ll_setRefValue(addr, ((SourceDocument_Type)jcasType).casFeatCode_nerList, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     

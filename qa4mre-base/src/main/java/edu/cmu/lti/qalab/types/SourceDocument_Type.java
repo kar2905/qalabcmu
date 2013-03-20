@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** 
- * Updated by JCasGen Fri Feb 22 06:13:34 EST 2013
+ * Updated by JCasGen Wed Mar 13 13:14:06 EDT 2013
  * @generated */
 public class SourceDocument_Type extends Annotation_Type {
   /** @generated */
@@ -115,42 +115,6 @@ public class SourceDocument_Type extends Annotation_Type {
     ll_cas.ll_setRefValue(addr, casFeatCode_sentenceList, v);}
     
   
- 
-  /** @generated */
-  final Feature casFeat_phraseList;
-  /** @generated */
-  final int     casFeatCode_phraseList;
-  /** @generated */ 
-  public int getPhraseList(int addr) {
-        if (featOkTst && casFeat_phraseList == null)
-      jcas.throwFeatMissing("phraseList", "edu.cmu.lti.qalab.types.SourceDocument");
-    return ll_cas.ll_getRefValue(addr, casFeatCode_phraseList);
-  }
-  /** @generated */    
-  public void setPhraseList(int addr, int v) {
-        if (featOkTst && casFeat_phraseList == null)
-      jcas.throwFeatMissing("phraseList", "edu.cmu.lti.qalab.types.SourceDocument");
-    ll_cas.ll_setRefValue(addr, casFeatCode_phraseList, v);}
-    
-  
- 
-  /** @generated */
-  final Feature casFeat_nerList;
-  /** @generated */
-  final int     casFeatCode_nerList;
-  /** @generated */ 
-  public int getNerList(int addr) {
-        if (featOkTst && casFeat_nerList == null)
-      jcas.throwFeatMissing("nerList", "edu.cmu.lti.qalab.types.SourceDocument");
-    return ll_cas.ll_getRefValue(addr, casFeatCode_nerList);
-  }
-  /** @generated */    
-  public void setNerList(int addr, int v) {
-        if (featOkTst && casFeat_nerList == null)
-      jcas.throwFeatMissing("nerList", "edu.cmu.lti.qalab.types.SourceDocument");
-    ll_cas.ll_setRefValue(addr, casFeatCode_nerList, v);}
-    
-  
 
 
 
@@ -175,14 +139,6 @@ public class SourceDocument_Type extends Annotation_Type {
  
     casFeat_sentenceList = jcas.getRequiredFeatureDE(casType, "sentenceList", "uima.cas.FSList", featOkTst);
     casFeatCode_sentenceList  = (null == casFeat_sentenceList) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_sentenceList).getCode();
-
- 
-    casFeat_phraseList = jcas.getRequiredFeatureDE(casType, "phraseList", "uima.cas.FSList", featOkTst);
-    casFeatCode_phraseList  = (null == casFeat_phraseList) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_phraseList).getCode();
-
- 
-    casFeat_nerList = jcas.getRequiredFeatureDE(casType, "nerList", "uima.cas.FSList", featOkTst);
-    casFeatCode_nerList  = (null == casFeat_nerList) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_nerList).getCode();
 
   }
 }
