@@ -11,8 +11,6 @@
 		<delegateAnalysisEngine key="StanfordSentenceAnnotator">
 			<import location="annotators/StanfordSentenceAnnotator.xml" />			
 		</delegateAnalysisEngine>
-		
-		
 				
 		<delegateAnalysisEngine key="NoiseFilter">
 			<import location="annotators/NoiseFilter.xml" />
@@ -21,6 +19,16 @@
 		<delegateAnalysisEngine key="StanfordNLPAnnotator">
 			<import location="annotators/StanfordNLPAnnotator.xml" />			
 		</delegateAnalysisEngine>
+		
+		<delegateAnalysisEngine key="PhraseAnnotator">
+			<import location="annotators/PhraseAnnotator.xml" />			
+		</delegateAnalysisEngine>
+		
+		<delegateAnalysisEngine key="NEAnnotator">
+			<import location="annotators/NEAnnotator.xml" />			
+		</delegateAnalysisEngine>
+		
+		
 
 	</delegateAnalysisEngineSpecifiers>
 	<analysisEngineMetaData>
@@ -36,6 +44,8 @@
 				<node>StanfordSentenceAnnotator</node>						
 				<node>NoiseFilter</node>
 				<node>StanfordNLPAnnotator</node>	
+				<node>PhraseAnnotator</node>
+				<node>NEAnnotator</node>
 			</fixedFlow>
 		</flowConstraints>
 		<typePriorities />
