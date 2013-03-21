@@ -80,10 +80,10 @@
 		</dependency>
 		
 	</dependencies>
-	<scm>
+	<!-- <scm>
 		<connection>scm:git:git@github.com:alkeshpatel11/hw1-alkeshku.git</connection>
 		<developerConnection>scm:git:git@github.com:alkeshpatel11/hw1-alkeshku.git</developerConnection>
-	</scm>
+	</scm> -->
 
 	<build>
 		<plugins>
