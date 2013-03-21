@@ -32,7 +32,7 @@ public class QA4MREXMITestDocReader extends CollectionReader_ImplBase {
 	
 	@Override
 	public void initialize() throws ResourceInitializationException {
-		//System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		
 		File inputDir = new File(
 				(String) getConfigParameterValue("INPUT_DIR"));
 		documents = inputDir.listFiles();
@@ -42,8 +42,7 @@ public class QA4MREXMITestDocReader extends CollectionReader_ImplBase {
 	@Override
 	public void getNext(CAS aCAS) throws IOException, CollectionException {
 
-		// open input file list iterator
-		//BufferedReader bfr = null;
+		
 		String text = "";
 		try {
 			

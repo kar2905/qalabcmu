@@ -20,7 +20,7 @@ import org.apache.uima.util.XMLInputSource;
  * 
  * 
  */
-public class SimpleRunCPE extends Thread {
+public class SimpleSourceDocIndexRunCPE extends Thread {
   /**
    * The CPE instance.
    */
@@ -42,11 +42,11 @@ public class SimpleRunCPE extends Thread {
    * @param args
    *          command line arguments into the program - see class description
    */
-  public SimpleRunCPE(String args[]) throws Exception {
+  public SimpleSourceDocIndexRunCPE(String args[]) throws Exception {
     mStartTime = System.currentTimeMillis();
     if(args.length==0){
     	args=new String[1];
-    	args[0]=new String("src/main/resources/CpeDescriptor.xml");
+    	args[0]=new String("src/main/resources/CpeSourceDescriptor.xml");
     }
     
     // check command line args
@@ -97,7 +97,7 @@ public class SimpleRunCPE extends Thread {
    *          Command line arguments - see class description
    */
   public static void main(String[] args) throws Exception {
-    new SimpleRunCPE(args);
+    new SimpleSourceDocIndexRunCPE(args);
   }
 
   /**

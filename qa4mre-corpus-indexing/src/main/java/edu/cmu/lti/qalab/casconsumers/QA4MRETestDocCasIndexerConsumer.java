@@ -19,6 +19,8 @@ import org.uimafit.util.JCasUtil;
 import edu.cmu.lti.oaqa.core.provider.solr.SolrWrapper;
 import edu.cmu.lti.qalab.solrutils.SolrUtils;
 import edu.cmu.lti.qalab.types.Dependency;
+import edu.cmu.lti.qalab.types.NER;
+import edu.cmu.lti.qalab.types.NounPhrase;
 import edu.cmu.lti.qalab.types.Sentence;
 import edu.cmu.lti.qalab.types.TestDocument;
 import edu.cmu.lti.qalab.utils.Utils;
@@ -68,20 +70,13 @@ public class QA4MRETestDocCasIndexerConsumer extends CasConsumer_ImplBase {
 		try {
 			// try to get indexschema so that you can know the fields available
 			indexSchema = SolrUtils.getIndexSchema(serverUrl, coreName, schemaName);
-			
 
 			String id = testDoc.getId();
 			
-
-			//String docText = testDoc.getText();
-			//indexMap.put("text", docText);
-			// use copyfield and dynamic field for sentences
-			// copyfield sentence, dynamicfield sentence_*
-			// programmatically * is replaced by actual sentence number
-			// donot index sentence whose boolean filter is set true
-
-			ArrayList<Sentence> sentenceList = this.getCollectionFromFSList(
-					testDoc.getSentenceList(), Sentence.class);
+			ArrayList<Sentence> sentenceList = Utils.fromFSListToCollection(testDoc.getSentenceList(), Sentence.class);
+			
+			
+			
 			for (int i = 0; i < sentenceList.size(); i++) {
 				Sentence sent=sentenceList.get(i);
 				String sentText=sent.getText();
@@ -90,9 +85,37 @@ public class QA4MRETestDocCasIndexerConsumer extends CasConsumer_ImplBase {
 				indexMap.put("docid", id);
 				indexMap.put("id", sentId);
 				indexMap.put("text",sentText);
+
+				FSList fsNounList=sent.getPhraseList();
+				ArrayList<NounPhrase>nounPhrases=Utils.fromFSListToCollection(fsNounList, NounPhrase.class);				
+				ArrayList<String>nnList=new ArrayList<String>();
+				for(int j=0;j<nounPhrases.size();j++){
+					nnList.add(nounPhrases.get(j).getText());
+				}
+				
+				indexMap.put("nounphrases", nnList);
+				
+				FSList fsNEList=sent.getNerList();
+				ArrayList<NER>namedEntities=Utils.fromFSListToCollection(fsNEList, NER.class);
+				ArrayList<String>neList=new ArrayList<String>();
+				for(int j=0;j<namedEntities.size();j++){
+					neList.add(namedEntities.get(j).getText());
+				}
+				indexMap.put("namedentities", neList);
+								
 				FSList fsDependencies=sent.getDependencyList();
-				ArrayList<Dependency>dependencies=Utils.iterateFSList(fsDependencies, Dependency.class);
-				indexMap.put("dependencies", dependencies);
+				ArrayList<Dependency>dependencies=Utils.fromFSListToCollection(fsDependencies, Dependency.class);				
+				ArrayList<String>depList=new ArrayList<String>();
+				for(int j=0;j<dependencies.size();j++){
+					String rel=dependencies.get(j).getRelation();
+					String gov=dependencies.get(j).getGovernor().getText();					
+					String dep=dependencies.get(j).getDependent().getText();
+					String depText=rel+"("+gov+","+dep+")";
+					depList.add(depText);
+				}
+				
+				indexMap.put("dependencies", depList);
+				
 				SolrInputDocument solrInpDoc=this.wrapper.buildSolrDocument(indexMap);
 				String docXML=this.wrapper.convertSolrDocInXML(solrInpDoc);
 				
@@ -104,18 +127,12 @@ public class QA4MRETestDocCasIndexerConsumer extends CasConsumer_ImplBase {
 			}
 			
 		} catch (Exception e) {
+			System.out.println(testDoc);
 			e.printStackTrace();
 		}
 
 	}
 	
-
-	public <T extends TOP> ArrayList<T> getCollectionFromFSList(FSList list,
-			Class<T> classType) {
-
-		Collection<T> myCollection = JCasUtil.select(list, classType);
-		return new ArrayList<T>(myCollection);
-	}
 
 	/**
 	 * Closes the file and other resources initialized during the process
