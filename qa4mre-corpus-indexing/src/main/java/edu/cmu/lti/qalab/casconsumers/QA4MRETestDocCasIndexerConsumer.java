@@ -122,7 +122,8 @@ public class QA4MRETestDocCasIndexerConsumer extends CasConsumer_ImplBase {
 				//System.out.println(docXML);
 				
 				this.wrapper.indexDocument(docXML);
-				this.wrapper.indexCommit();
+				//this.wrapper.indexCommit();
+				this.wrapper.getServer().commit();
 				
 			}
 			
