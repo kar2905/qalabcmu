@@ -150,6 +150,7 @@ public class EntranceExamCorpusReader extends CollectionReader_ImplBase {
 			newDoc.setId(fileId);
 			newDoc.setText(docText);
 			testDoc.addToIndexes();
+			newDoc.addToIndexes();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
