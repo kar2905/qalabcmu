@@ -54,16 +54,18 @@ public class StanfordAnswerNLPAnnotator extends JCasAnnotator_ImplBase {
 
 		TestDocument testDoc = (TestDocument) Utils
 				.getTestDocumentFromCAS(jCas);
-		
+
 		String id = testDoc.getId();
-		ArrayList<QuestionAnswerSet>qaList=Utils.getQuestionAnswerSetFromTestDocCAS(jCas);//.getQuestionListFromTestDocCAS(jCas);
-		
-		System.out.println("Total Questions: "+qaList.size());
+		ArrayList<QuestionAnswerSet> qaList = Utils
+				.getQuestionAnswerSetFromTestDocCAS(jCas);// .getQuestionListFromTestDocCAS(jCas);
+
+		System.out.println("Total Questions: " + qaList.size());
 		int sentNo = 0;
 		for (int i = 0; i < qaList.size(); i++) {
 
-			ArrayList<Answer> answers=Utils.getAnswerListFromQAset(qaList.get(i));
-			for(int i2=0;i2<answers.size();i2++){
+			ArrayList<Answer> answers = Utils.getAnswerListFromQAset(qaList
+					.get(i));
+			for (int i2 = 0; i2 < answers.size(); i2++) {
 				String answerText = answers.get(i2).getText();
 				Annotation document = new Annotation(answerText);
 				try {
@@ -74,19 +76,21 @@ public class StanfordAnswerNLPAnnotator extends JCasAnnotator_ImplBase {
 					e.printStackTrace();
 					return;
 				}
-				List<CoreMap> nlpedAnswer = document.get(SentencesAnnotation.class);
-							
+				List<CoreMap> nlpedAnswer = document
+						.get(SentencesAnnotation.class);
+
 				for (CoreMap answerUnit : nlpedAnswer) {
 
 					String qText = answerUnit.toString();
 					Answer annAnswer = new Answer(jCas);
 					ArrayList<Token> tokenList = new ArrayList<Token>();
 					// Dependency should have Token rather than String
-					for (CoreLabel token : answerUnit.get(TokensAnnotation.class)) { // order
-																					// needs
-																					// to
-																					// be
-																					// considered
+					for (CoreLabel token : answerUnit
+							.get(TokensAnnotation.class)) { // order
+															// needs
+															// to
+															// be
+															// considered
 						int begin = token.beginPosition();
 
 						int end = token.endPosition();
@@ -110,10 +114,12 @@ public class StanfordAnswerNLPAnnotator extends JCasAnnotator_ImplBase {
 					FSList fsTokenList = this.createTokenList(jCas, tokenList);
 					fsTokenList.addToIndexes();
 
-					// this is the Stanford dependency graph of the current sentence
+					// this is the Stanford dependency graph of the current
+					// sentence
 					SemanticGraph dependencies = answerUnit
 							.get(CollapsedCCProcessedDependenciesAnnotation.class);
-					List<SemanticGraphEdge> depList = dependencies.edgeListSorted();
+					List<SemanticGraphEdge> depList = dependencies
+							.edgeListSorted();
 					FSList fsDependencyList = this.createDependencyList(jCas,
 							depList);
 					fsDependencyList.addToIndexes();
@@ -122,40 +128,50 @@ public class StanfordAnswerNLPAnnotator extends JCasAnnotator_ImplBase {
 
 					annAnswer.setId(String.valueOf(sentNo));
 					annAnswer.setBegin(tokenList.get(0).getBegin());// begin of
-																		// first
-																		// token
-					annAnswer
-							.setEnd(tokenList.get(tokenList.size() - 1).getEnd());// end
-																					// of
-																					// last
-																					// token
+																	// first
+																	// token
+					annAnswer.setEnd(tokenList.get(tokenList.size() - 1)
+							.getEnd());// end
+										// of
+										// last
+										// token
 					annAnswer.setText(answerText);
 					annAnswer.setTokenList(fsTokenList);
 					annAnswer.setDependencies(fsDependencyList);
 					annAnswer.addToIndexes();
-					answers.set(i2,annAnswer);
-					
-					System.out.println("Question no. " + sentNo + " Answer no."+i2+" processed");
+					answers.set(i2, annAnswer);
+
+					System.out.println("Question no. " + sentNo + " Answer no."
+							+ i2 + " processed");
 				}
-				
+
 			}
 			sentNo++;
-			
-			FSList answerFSList=this.createAnswerFSList(jCas, answers);
-			for(int i2=0;i2<answers.size();i2++){
+
+			FSList answerFSList = this.createAnswerFSList(jCas, answers);
+			for (int i2 = 0; i2 < answers.size(); i2++) {
 				answers.get(i2).addToIndexes();
 				qaList.get(i).setAnswerList(answerFSList);
 			}
-			
 
-		
 		}
-		//FSList fsQuestionList = Utils.createQuestionList(jCas, questionList);
-		//fsQuestionList.addToIndexes();	
-		FSList fsQASet=Utils.createQuestionAnswerSet(jCas, qaList);
+		// FSList fsQuestionList = Utils.createQuestionList(jCas, questionList);
+		// fsQuestionList.addToIndexes();
+		FSList fsQASet = Utils.createQuestionAnswerSet(jCas, qaList);
 		testDoc.setQaList(fsQASet);
 		testDoc.addToIndexes();
-		;
+		for(Answer a:Utils.getAnswerListFromQAset(Utils.getQuestionAnswerSetFromTestDocCAS(
+				jCas).get(0))){
+			try{
+				for(int i=0;;i++){
+					System.out.println(a.getDependencies().getNthElement(i).toString());
+				}
+				
+			}catch(Exception e){
+				
+			}
+			
+		}
 	}
 
 	/**
@@ -210,6 +226,7 @@ public class StanfordAnswerNLPAnnotator extends JCasAnnotator_ImplBase {
 
 		return list;
 	}
+
 	/**
 	 * @param aJCas
 	 * @param aCollection

@@ -152,7 +152,8 @@ public class StanfordQuestionNLPAnnotator extends JCasAnnotator_ImplBase {
 		testDoc.setId(id);
 		testDoc.setQaList(fsQASet);
 		testDoc.addToIndexes();
-
+		
+		
 	}
 
 	/**

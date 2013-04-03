@@ -359,6 +359,25 @@ public class Utils {
 
 		return tokenList;
 	}
+	public static ArrayList<Dependency> getDependencyListFromSentenceList(Sentence sentence) {
+
+		FSList fsDependencyList=sentence.getDependencyList();
+		ArrayList<Dependency> DependencyList = new ArrayList<Dependency>();
+		int i = 0;
+		while (true) {
+
+			Dependency d = null;
+			try {
+				d = (Dependency) fsDependencyList.getNthElement(i);
+			} catch (Exception e) {
+				break;
+			}
+			DependencyList.add(d);
+			i++;
+		}
+
+		return DependencyList;
+	}
 	
 	public static ArrayList<NounPhrase> getNounPhraseListFromQuestionList(Question question) {
 
