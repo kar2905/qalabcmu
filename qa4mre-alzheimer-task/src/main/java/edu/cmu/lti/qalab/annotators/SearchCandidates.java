@@ -14,25 +14,14 @@ import org.apache.uima.resource.ResourceInitializationException;
 
 import edu.cmu.lti.oaqa.core.provider.solr.SolrWrapper;
 import edu.cmu.lti.qalab.types.Answer;
-<<<<<<< HEAD
-import edu.cmu.lti.qalab.types.Dependency;
-=======
 import edu.cmu.lti.qalab.types.CandidateSentence;
->>>>>>> d7cd2644a498a12f646d273532b70970e004b84f
 import edu.cmu.lti.qalab.types.NER;
 import edu.cmu.lti.qalab.types.NounPhrase;
 import edu.cmu.lti.qalab.types.Question;
 import edu.cmu.lti.qalab.types.QuestionAnswerSet;
 import edu.cmu.lti.qalab.types.Sentence;
-<<<<<<< HEAD
-=======
 import edu.cmu.lti.qalab.types.TestDocument;
->>>>>>> d7cd2644a498a12f646d273532b70970e004b84f
 import edu.cmu.lti.qalab.utils.Utils;
-import edu.smu.tspell.wordnet.NounSynset;
-import edu.smu.tspell.wordnet.Synset;
-import edu.smu.tspell.wordnet.SynsetType;
-import edu.smu.tspell.wordnet.WordNetDatabase;
 
 public class SearchCandidates extends JCasAnnotator_ImplBase{
 
@@ -102,20 +91,6 @@ public class SearchCandidates extends JCasAnnotator_ImplBase{
 				qaSet.get(i).addToIndexes();
 			
 				
-				//---yiFei ADDED
-				//---get candidate sentence
-				ArrayList<Sentence> candidateSentence  = new ArrayList<Sentence>();
-				ArrayList<Sentence> sList = Utils.getSentenceListFromSourceDocCAS(aJCas);
-				for(Sentence s:sList){
-					for(SolrDocument doc:results){
-						if(s.getId().equals(doc.get("id").toString())){
-							candidateSentence.add(s);
-						}
-					}
-				}
-				//--------get candidate sentence end-----
-				
-				
 			} catch (SolrServerException e) {
 				e.printStackTrace();
 			}
@@ -144,38 +119,6 @@ public class SearchCandidates extends JCasAnnotator_ImplBase{
 		
 		
 		return solrQuery;
-	}
-	
-	public Double DepSimilarity(Dependency d1,Dependency d2){
-	    System.out.println("lol");
-	    NounSynset nounSynset; 
-	    NounSynset[] hyponyms; 
-
-	    WordNetDatabase database = WordNetDatabase.getFileInstance(); 
-	    Synset[] synsets = database.getSynsets("picture", SynsetType.NOUN); 
-	    
-	    
-	    
-	    for (int i = 0; i < synsets.length; i++) { 
-	        nounSynset = (NounSynset)(synsets[i]); 
-	        hyponyms = nounSynset.getHyponyms();
-	        ;
-	       System.out.println(nounSynset.getWordForms().length);
-	       for(String s:nounSynset.getWordForms()){
-	         System.out.print(s+" counts: "+nounSynset.getTagCount(s)+" ");
-	       }
-	       
-	        System.err.println(nounSynset.getWordForms()[0] + 
-	                ": " + nounSynset.getDefinition() + ") has " + hyponyms.length + " hyponyms and counts:"+nounSynset.getTagCount(nounSynset.getWordForms()[0]));
-	        for(NounSynset ns:hyponyms){
-	          String[] tmp = ns.getWordForms();
-	          for(String s:tmp){
-	            System.out.print(s+" counts:"+ns.getTagCount(s)+"| ");
-	          }
-	          System.out.println("");
-	        }
-	    }
-		return 0.0;
 	}
 
 }
