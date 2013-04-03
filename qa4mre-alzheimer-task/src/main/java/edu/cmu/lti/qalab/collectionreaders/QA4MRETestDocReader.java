@@ -43,12 +43,12 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 	@Override
 	public void initialize() throws ResourceInitializationException {
 		try {
-			//System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+			// System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 			File inputDir = new File(
 					(String) getConfigParameterValue("INPUT_DIR"));
 			testFile = inputDir.listFiles(new OnlyNXML("xml"));
 			System.out.println("Total files: " + testFile.length);
-			String xmlText=this.readTestFile();
+			String xmlText = this.readTestFile();
 			this.parseTestDocument(xmlText);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,7 +59,7 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 	public void getNext(CAS aCAS) throws IOException, CollectionException {
 
 		if (nCurrFile < testFile.length && !(nCurrDoc < documents.getLength())) {
-			nCurrDoc=0;
+			nCurrDoc = 0;
 			nCurrFile++;
 			documents = null;
 			getNext(aCAS);
@@ -75,64 +75,83 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 		if (documents == null) {
 
 			try {
-				String xmlText=readTestFile();
+				String xmlText = readTestFile();
 				this.parseTestDocument(xmlText);
-			} catch (Exception e) {			
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 		}
-		
-		Element readingTestElement=(Element)documents.item(nCurrDoc);
+
+		Element readingTestElement = (Element) documents.item(nCurrDoc);
 		NodeList testDocNodeList = readingTestElement
 				.getElementsByTagName("doc");
-		
+
 		String docText = testDocNodeList.item(0).getTextContent().trim();
-		//System.out.println("**************Lines in documenttext: "+docText.split("[\\n]").length);
-		
-		String testDocId=((Element)testDocNodeList.item(0)).getAttribute("d_id");
-		String fileName=testFile[nCurrFile].getName();
-		
-		String docId=fileName.replace(".xmi", "")+"_"+testDocId;
-		
+		// System.out.println("**************Lines in documenttext: "+docText.split("[\\n]").length);
+
+		String testDocId = ((Element) testDocNodeList.item(0))
+				.getAttribute("d_id");
+		String fileName = testFile[nCurrFile].getName();
+
+		String docId = fileName.replace(".xmi", "") + "_" + testDocId;
+
 		NodeList questionNodeList = readingTestElement
 				.getElementsByTagName("q");
-		
-		ArrayList<QuestionAnswerSet>questionAnswersList=new ArrayList<QuestionAnswerSet>();
-		
-		for(int i=0;i<questionNodeList.getLength();i++){
-			
-			Element questionEle=(Element)questionNodeList.item(i);
-			NodeList questionNode=questionEle.getElementsByTagName("q_str");
-			String questionStr=questionNode.item(0).getTextContent();
-			NodeList answerNodeList=questionEle.getElementsByTagName("answer");
-			
-			Question question=new Question(jcas);
+
+		ArrayList<QuestionAnswerSet> questionAnswersList = new ArrayList<QuestionAnswerSet>();
+
+		for (int i = 0; i < questionNodeList.getLength(); i++) {
+
+			Element questionEle = (Element) questionNodeList.item(i);
+			NodeList questionNode = questionEle.getElementsByTagName("q_str");
+			String questionStr = questionNode.item(0).getTextContent();
+			NodeList answerNodeList = questionEle
+					.getElementsByTagName("answer");
+
+			Question question = new Question(jcas);
 			question.setText(questionStr);
-			ArrayList<Answer>answerCollection=new ArrayList<Answer>();
-			for(int j=0;j<answerNodeList.getLength();j++){
-				String answer=answerNodeList.item(j).getTextContent();
-				Answer ans=new Answer(jcas);
+			ArrayList<Answer> answerCollection = new ArrayList<Answer>();
+			for (int j = 0; j < answerNodeList.getLength(); j++) {
+				Element ansEle = (Element) answerNodeList.item(j);
+				String isCorrect = ansEle.getAttribute("correct");// <answer
+																	// a_id="2"
+																	// correct="Yes">aromatase</answer>
+
+				String answer = answerNodeList.item(j).getTextContent();
+				Answer ans = new Answer(jcas);
+
+				if (isCorrect != null) {
+					if (isCorrect.equals("Yes")){
+						ans.setIsCorrect(true);
+					}else{
+						ans.setIsCorrect(false);
+					}
+				} else {
+					ans.setIsCorrect(false);
+				}
 				ans.setId(String.valueOf(j));
 				ans.setText(answer);
 				answerCollection.add(ans);
 			}
-			FSList answerFSList=this.createAnswerFSList(jcas, answerCollection);			
-			QuestionAnswerSet questionAnswers=new QuestionAnswerSet(jcas);
+			FSList answerFSList = this.createAnswerFSList(jcas,
+					answerCollection);
+			QuestionAnswerSet questionAnswers = new QuestionAnswerSet(jcas);
 			questionAnswers.setQuestion(question);
 			questionAnswers.setAnswerList(answerFSList);
-						
+
 			questionAnswersList.add(questionAnswers);
 		}
-		FSList quetionAnswersFSList=this.createQuestionAnswersFSList(jcas,questionAnswersList);
-		
-		//put document in CAS
+		FSList quetionAnswersFSList = this.createQuestionAnswersFSList(jcas,
+				questionAnswersList);
+
+		// put document in CAS
 		jcas.setDocumentText(docText);
-		TestDocument testDoc=new TestDocument(jcas);
+		TestDocument testDoc = new TestDocument(jcas);
 		testDoc.setId(docId);
 		testDoc.setText(docText);
-		testDoc.setQaList(quetionAnswersFSList); 				
-		
+		testDoc.setQaList(quetionAnswersFSList);
+
 		testDoc.addToIndexes();
 		// nCurrFile++;
 		nCurrDoc++;
@@ -152,7 +171,7 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 				chars = new char[4096];
 			}
 			xmlText = xmlText.trim();
-			//System.out.println(xmlText);
+			// System.out.println(xmlText);
 			System.out
 					.println("Read: " + testFile[nCurrFile].getAbsolutePath());
 
@@ -221,11 +240,13 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 		for (int i = 0; i < topicNodeList.getLength(); i++) {
 
 			Element topicElement = (Element) topicNodeList.item(i);
+			String topicId=topicElement.getAttribute("t_id");
 			NodeList readingTestNodeList = topicElement
 					.getElementsByTagName("reading-test");
-
+			
 			documents = readingTestNodeList;
-
+			Element eleReading=(Element)readingTestNodeList;
+			String rId=eleReading.getAttribute("r_id");
 		}
 
 	}
@@ -251,7 +272,8 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 		// return nCurrFile < 10;
 		// return nCurrFile < testFile.length;
 		if (nCurrFile < testFile.length && nCurrDoc < documents.getLength()) {
-			System.out.println("***********True: currFile "+nCurrFile+"\tcurrDoc "+nCurrDoc);
+			System.out.println("***********True: currFile " + nCurrFile
+					+ "\tcurrDoc " + nCurrDoc);
 			return true;
 		}
 		return false;

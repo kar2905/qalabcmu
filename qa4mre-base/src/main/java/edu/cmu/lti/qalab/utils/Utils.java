@@ -12,8 +12,11 @@ import org.apache.uima.jcas.cas.EmptyFSList;
 import org.apache.uima.jcas.cas.FSList;
 import org.apache.uima.jcas.cas.NonEmptyFSList;
 import org.apache.uima.jcas.cas.TOP;
+import org.apache.uima.jcas.tcas.Annotation;
 import org.uimafit.util.JCasUtil;
 
+import edu.cmu.lti.qalab.types.Answer;
+import edu.cmu.lti.qalab.types.CandidateSentence;
 import edu.cmu.lti.qalab.types.Dependency;
 import edu.cmu.lti.qalab.types.NER;
 import edu.cmu.lti.qalab.types.NounPhrase;
@@ -90,6 +93,42 @@ public class Utils {
 		return list;
 	}
 
+	
+	
+	public static <T extends TOP> ArrayList<T> fromFSListToCollection(FSList list,
+			Class<T> classType) {
+
+		Collection<T> myCollection = JCasUtil.select(list, classType);
+		/*
+		 * for(T element:myCollection){ System.out.println(.getText()); }
+		 */
+
+		return new ArrayList<T>(myCollection);
+	}
+	
+	public static <T extends Annotation> FSList fromCollectionToFSList(JCas aJCas,
+			Collection<T> aCollection) {
+		if (aCollection.size() == 0) {
+			return new EmptyFSList(aJCas);
+		}
+
+		NonEmptyFSList head = new NonEmptyFSList(aJCas);
+		NonEmptyFSList list = head;
+		Iterator<T> i = aCollection.iterator();
+		while (i.hasNext()) {
+			head.setHead(i.next());
+			if (i.hasNext()) {
+				head.setTail(new NonEmptyFSList(aJCas));
+				head = (NonEmptyFSList) head.getTail();
+			} else {
+				head.setTail(new EmptyFSList(aJCas));
+			}
+		}
+
+		return list;
+	}
+
+	
 	/**
 	 * Creates FeatureStructure List from questionList
 	 * 
@@ -319,6 +358,30 @@ public class Utils {
 
 		return questionList;
 	}
+	public static ArrayList<ArrayList<Answer>> getAnswerListFromTestDocCAS(JCas jCas) {
+
+		TestDocument testDoc = Utils.getTestDocumentFromCAS(jCas);
+		FSList fsQAList = testDoc.getQaList();
+		
+		ArrayList<ArrayList<Answer>> answerList = new ArrayList<ArrayList<Answer>>();
+		int i = 0;
+		while (true) {
+
+			ArrayList<Answer> answerChoiceList = null;
+			try {
+				QuestionAnswerSet qaSet = (QuestionAnswerSet) fsQAList.getNthElement(i);
+			
+				answerChoiceList=Utils.fromFSListToCollection(qaSet.getAnswerList(),Answer.class);
+				
+			} catch (Exception e) {
+				break;
+			}
+			answerList.add(answerChoiceList);
+			i++;
+		}
+
+		return answerList;
+	}
 
 	public static ArrayList<Token> getTokenListFromSentenceList(Sentence sentence) {
 
@@ -402,16 +465,6 @@ public class Utils {
 		return sentenceList;
 	}
 
-	public static <T extends TOP> ArrayList<T> fromFSListToCollection(FSList list,
-			Class<T> classType) {
-
-		Collection<T> myCollection = JCasUtil.select(list, classType);
-		/*
-		 * for(T element:myCollection){ System.out.println(.getText()); }
-		 */
-
-		return new ArrayList<T>(myCollection);
-	}
 	
 	public static TestDocument getTestDocumentFromCAS(JCas jCas) {
 		FSIterator it = jCas.getAnnotationIndex(TestDocument.type).iterator();
@@ -421,6 +474,15 @@ public class Utils {
 		}
 		return srcDoc;
 	}
+	public static CandidateSentence getCandidateSentenceFromCAS(JCas jCas) {
+		FSIterator it = jCas.getAnnotationIndex(CandidateSentence.type).iterator();
+		CandidateSentence candSent = null;
+		if (it.hasNext()) {
+			candSent = (CandidateSentence) it.next();
+		}
+		return candSent;
+	}
+	
 	public static boolean isInsideBracket(ArrayList<Brackets>bracketedList,int pos){
 		
 		boolean isInside=false;

@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** 
- * Updated by JCasGen Wed Mar 13 13:14:05 EDT 2013
+ * Updated by JCasGen Wed Apr 03 13:15:52 EDT 2013
  * @generated */
 public class Answer_Type extends Annotation_Type {
   /** @generated */
@@ -151,6 +151,96 @@ public class Answer_Type extends Annotation_Type {
     ll_cas.ll_setBooleanValue(addr, casFeatCode_isCorrect, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_isSelected;
+  /** @generated */
+  final int     casFeatCode_isSelected;
+  /** @generated */ 
+  public boolean getIsSelected(int addr) {
+        if (featOkTst && casFeat_isSelected == null)
+      jcas.throwFeatMissing("isSelected", "edu.cmu.lti.qalab.types.Answer");
+    return ll_cas.ll_getBooleanValue(addr, casFeatCode_isSelected);
+  }
+  /** @generated */    
+  public void setIsSelected(int addr, boolean v) {
+        if (featOkTst && casFeat_isSelected == null)
+      jcas.throwFeatMissing("isSelected", "edu.cmu.lti.qalab.types.Answer");
+    ll_cas.ll_setBooleanValue(addr, casFeatCode_isSelected, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_nounPhraseList;
+  /** @generated */
+  final int     casFeatCode_nounPhraseList;
+  /** @generated */ 
+  public int getNounPhraseList(int addr) {
+        if (featOkTst && casFeat_nounPhraseList == null)
+      jcas.throwFeatMissing("nounPhraseList", "edu.cmu.lti.qalab.types.Answer");
+    return ll_cas.ll_getRefValue(addr, casFeatCode_nounPhraseList);
+  }
+  /** @generated */    
+  public void setNounPhraseList(int addr, int v) {
+        if (featOkTst && casFeat_nounPhraseList == null)
+      jcas.throwFeatMissing("nounPhraseList", "edu.cmu.lti.qalab.types.Answer");
+    ll_cas.ll_setRefValue(addr, casFeatCode_nounPhraseList, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_nerList;
+  /** @generated */
+  final int     casFeatCode_nerList;
+  /** @generated */ 
+  public int getNerList(int addr) {
+        if (featOkTst && casFeat_nerList == null)
+      jcas.throwFeatMissing("nerList", "edu.cmu.lti.qalab.types.Answer");
+    return ll_cas.ll_getRefValue(addr, casFeatCode_nerList);
+  }
+  /** @generated */    
+  public void setNerList(int addr, int v) {
+        if (featOkTst && casFeat_nerList == null)
+      jcas.throwFeatMissing("nerList", "edu.cmu.lti.qalab.types.Answer");
+    ll_cas.ll_setRefValue(addr, casFeatCode_nerList, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_tokenList;
+  /** @generated */
+  final int     casFeatCode_tokenList;
+  /** @generated */ 
+  public int getTokenList(int addr) {
+        if (featOkTst && casFeat_tokenList == null)
+      jcas.throwFeatMissing("tokenList", "edu.cmu.lti.qalab.types.Answer");
+    return ll_cas.ll_getRefValue(addr, casFeatCode_tokenList);
+  }
+  /** @generated */    
+  public void setTokenList(int addr, int v) {
+        if (featOkTst && casFeat_tokenList == null)
+      jcas.throwFeatMissing("tokenList", "edu.cmu.lti.qalab.types.Answer");
+    ll_cas.ll_setRefValue(addr, casFeatCode_tokenList, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_dependencies;
+  /** @generated */
+  final int     casFeatCode_dependencies;
+  /** @generated */ 
+  public int getDependencies(int addr) {
+        if (featOkTst && casFeat_dependencies == null)
+      jcas.throwFeatMissing("dependencies", "edu.cmu.lti.qalab.types.Answer");
+    return ll_cas.ll_getRefValue(addr, casFeatCode_dependencies);
+  }
+  /** @generated */    
+  public void setDependencies(int addr, int v) {
+        if (featOkTst && casFeat_dependencies == null)
+      jcas.throwFeatMissing("dependencies", "edu.cmu.lti.qalab.types.Answer");
+    ll_cas.ll_setRefValue(addr, casFeatCode_dependencies, v);}
+    
+  
 
 
 
@@ -183,6 +273,26 @@ public class Answer_Type extends Annotation_Type {
  
     casFeat_isCorrect = jcas.getRequiredFeatureDE(casType, "isCorrect", "uima.cas.Boolean", featOkTst);
     casFeatCode_isCorrect  = (null == casFeat_isCorrect) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_isCorrect).getCode();
+
+ 
+    casFeat_isSelected = jcas.getRequiredFeatureDE(casType, "isSelected", "uima.cas.Boolean", featOkTst);
+    casFeatCode_isSelected  = (null == casFeat_isSelected) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_isSelected).getCode();
+
+ 
+    casFeat_nounPhraseList = jcas.getRequiredFeatureDE(casType, "nounPhraseList", "uima.cas.FSList", featOkTst);
+    casFeatCode_nounPhraseList  = (null == casFeat_nounPhraseList) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_nounPhraseList).getCode();
+
+ 
+    casFeat_nerList = jcas.getRequiredFeatureDE(casType, "nerList", "uima.cas.FSList", featOkTst);
+    casFeatCode_nerList  = (null == casFeat_nerList) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_nerList).getCode();
+
+ 
+    casFeat_tokenList = jcas.getRequiredFeatureDE(casType, "tokenList", "uima.cas.FSList", featOkTst);
+    casFeatCode_tokenList  = (null == casFeat_tokenList) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_tokenList).getCode();
+
+ 
+    casFeat_dependencies = jcas.getRequiredFeatureDE(casType, "dependencies", "uima.cas.FSList", featOkTst);
+    casFeatCode_dependencies  = (null == casFeat_dependencies) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_dependencies).getCode();
 
   }
 }

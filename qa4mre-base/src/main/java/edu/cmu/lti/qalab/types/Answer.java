@@ -12,7 +12,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Wed Mar 13 13:14:05 EDT 2013
+ * Updated by JCasGen Wed Apr 03 13:15:52 EDT 2013
  * XML source: /media/alkesh/Windows7_OS/Users/alkesh/git/qalabcmu/qa4mre-base/src/main/resources/TypeSystemDescriptor.xml
  * @generated */
 public class Answer extends Annotation {
@@ -169,6 +169,96 @@ public class Answer extends Annotation {
     if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_isCorrect == null)
       jcasType.jcas.throwFeatMissing("isCorrect", "edu.cmu.lti.qalab.types.Answer");
     jcasType.ll_cas.ll_setBooleanValue(addr, ((Answer_Type)jcasType).casFeatCode_isCorrect, v);}    
+   
+    
+  //*--------------*
+  //* Feature: isSelected
+
+  /** getter for isSelected - gets 
+   * @generated */
+  public boolean getIsSelected() {
+    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_isSelected == null)
+      jcasType.jcas.throwFeatMissing("isSelected", "edu.cmu.lti.qalab.types.Answer");
+    return jcasType.ll_cas.ll_getBooleanValue(addr, ((Answer_Type)jcasType).casFeatCode_isSelected);}
+    
+  /** setter for isSelected - sets  
+   * @generated */
+  public void setIsSelected(boolean v) {
+    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_isSelected == null)
+      jcasType.jcas.throwFeatMissing("isSelected", "edu.cmu.lti.qalab.types.Answer");
+    jcasType.ll_cas.ll_setBooleanValue(addr, ((Answer_Type)jcasType).casFeatCode_isSelected, v);}    
+   
+    
+  //*--------------*
+  //* Feature: nounPhraseList
+
+  /** getter for nounPhraseList - gets 
+   * @generated */
+  public FSList getNounPhraseList() {
+    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_nounPhraseList == null)
+      jcasType.jcas.throwFeatMissing("nounPhraseList", "edu.cmu.lti.qalab.types.Answer");
+    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Answer_Type)jcasType).casFeatCode_nounPhraseList)));}
+    
+  /** setter for nounPhraseList - sets  
+   * @generated */
+  public void setNounPhraseList(FSList v) {
+    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_nounPhraseList == null)
+      jcasType.jcas.throwFeatMissing("nounPhraseList", "edu.cmu.lti.qalab.types.Answer");
+    jcasType.ll_cas.ll_setRefValue(addr, ((Answer_Type)jcasType).casFeatCode_nounPhraseList, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: nerList
+
+  /** getter for nerList - gets 
+   * @generated */
+  public FSList getNerList() {
+    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_nerList == null)
+      jcasType.jcas.throwFeatMissing("nerList", "edu.cmu.lti.qalab.types.Answer");
+    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Answer_Type)jcasType).casFeatCode_nerList)));}
+    
+  /** setter for nerList - sets  
+   * @generated */
+  public void setNerList(FSList v) {
+    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_nerList == null)
+      jcasType.jcas.throwFeatMissing("nerList", "edu.cmu.lti.qalab.types.Answer");
+    jcasType.ll_cas.ll_setRefValue(addr, ((Answer_Type)jcasType).casFeatCode_nerList, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: tokenList
+
+  /** getter for tokenList - gets 
+   * @generated */
+  public FSList getTokenList() {
+    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_tokenList == null)
+      jcasType.jcas.throwFeatMissing("tokenList", "edu.cmu.lti.qalab.types.Answer");
+    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Answer_Type)jcasType).casFeatCode_tokenList)));}
+    
+  /** setter for tokenList - sets  
+   * @generated */
+  public void setTokenList(FSList v) {
+    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_tokenList == null)
+      jcasType.jcas.throwFeatMissing("tokenList", "edu.cmu.lti.qalab.types.Answer");
+    jcasType.ll_cas.ll_setRefValue(addr, ((Answer_Type)jcasType).casFeatCode_tokenList, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: dependencies
+
+  /** getter for dependencies - gets 
+   * @generated */
+  public FSList getDependencies() {
+    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_dependencies == null)
+      jcasType.jcas.throwFeatMissing("dependencies", "edu.cmu.lti.qalab.types.Answer");
+    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Answer_Type)jcasType).casFeatCode_dependencies)));}
+    
+  /** setter for dependencies - sets  
+   * @generated */
+  public void setDependencies(FSList v) {
+    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_dependencies == null)
+      jcasType.jcas.throwFeatMissing("dependencies", "edu.cmu.lti.qalab.types.Answer");
+    jcasType.ll_cas.ll_setRefValue(addr, ((Answer_Type)jcasType).casFeatCode_dependencies, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     

@@ -9,6 +9,7 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.FSList;
 import org.apache.uima.resource.ResourceInitializationException;
 
+import edu.cmu.lti.qalab.types.Answer;
 import edu.cmu.lti.qalab.types.NounPhrase;
 import edu.cmu.lti.qalab.types.Question;
 import edu.cmu.lti.qalab.types.QuestionAnswerSet;
@@ -32,6 +33,7 @@ public class QuestionPhraseAnnotator extends JCasAnnotator_ImplBase{
 		TestDocument testDoc=Utils.getTestDocumentFromCAS(aJCas);
 				
 		ArrayList<Question>questionList=Utils.getQuestionListFromTestDocCAS(aJCas);
+		ArrayList<ArrayList<Answer>>answerList=Utils.getAnswerListFromTestDocCAS(aJCas);
 		
 		for(int i=0;i<questionList.size();i++){
 			
@@ -44,6 +46,25 @@ public class QuestionPhraseAnnotator extends JCasAnnotator_ImplBase{
 			question.addToIndexes();
 			questionList.set(i, question);
 		}
+		
+		for(int i=0;i<answerList.size();i++){
+			
+			ArrayList<Answer> choiceList=answerList.get(i);
+			for(int j=0;j<choiceList.size();j++){
+				Answer ans=choiceList.get(j);
+				ArrayList<Token>tokenList= Utils.fromFSListToCollection(ans.getTokenList(),Token.class);
+				ArrayList<NounPhrase>phraseList=extractNounPhrases(tokenList,aJCas);
+				FSList fsPhraseList=Utils.createNounPhraseList(aJCas, phraseList);
+				fsPhraseList.addToIndexes(aJCas);							
+				ans.setNounPhraseList(fsPhraseList);
+				ans.addToIndexes();
+				choiceList.set(j, ans);
+			}
+			
+			answerList.set(i, choiceList);
+			
+		}
+		
 		
 		//FSList fsQuestionList=Utils.createQuestionList(aJCas, questionList);
 		//testDoc.setQuestionList(fsQuestionList);
