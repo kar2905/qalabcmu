@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <name>typeSystemDescriptor</name>
   <description/>
   <version>1.0</version>
@@ -218,6 +219,16 @@
           <name>isCorrect</name>
           <description/>
           <rangeTypeName>uima.cas.Boolean</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>tokenList</name>
+          <description/>
+          <rangeTypeName>uima.cas.FSList</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>dependencies</name>
+          <description/>
+          <rangeTypeName>uima.cas.FSList</rangeTypeName>
         </featureDescription>
       </features>
     </typeDescription>

@@ -14,6 +14,7 @@ import org.apache.uima.jcas.cas.NonEmptyFSList;
 import org.apache.uima.jcas.cas.TOP;
 import org.uimafit.util.JCasUtil;
 
+import edu.cmu.lti.qalab.types.Answer;
 import edu.cmu.lti.qalab.types.Dependency;
 import edu.cmu.lti.qalab.types.NER;
 import edu.cmu.lti.qalab.types.NounPhrase;
@@ -319,7 +320,26 @@ public class Utils {
 
 		return questionList;
 	}
+	public static ArrayList<Answer> getAnswerListFromQAset(QuestionAnswerSet qA) {
 
+		FSList aList = qA.getAnswerList();
+		ArrayList<Answer> answerList = new ArrayList<Answer>();
+		int i = 0;
+		while (true) {
+
+			Answer a = null;
+			try {
+				a = (Answer) aList.getNthElement(i);
+				
+			} catch (Exception e) {
+				break;
+			}
+			answerList.add(a);
+			i++;
+		}
+
+		return answerList;
+	}
 	public static ArrayList<Token> getTokenListFromSentenceList(Sentence sentence) {
 
 		FSList fsTokenList=sentence.getTokenList();

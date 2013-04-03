@@ -12,8 +12,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Wed Mar 13 13:14:05 EDT 2013
- * XML source: /media/alkesh/Windows7_OS/Users/alkesh/git/qalabcmu/qa4mre-base/src/main/resources/TypeSystemDescriptor.xml
+ * Updated by JCasGen Tue Apr 02 16:30:33 EDT 2013
+ * XML source: /Users/Yitei/Documents/workspace/qalab/qalabcmu/qa4mre-base/src/main/resources/TypeSystemDescriptor.xml
  * @generated */
 public class Answer extends Annotation {
   /** @generated
@@ -169,6 +169,42 @@ public class Answer extends Annotation {
     if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_isCorrect == null)
       jcasType.jcas.throwFeatMissing("isCorrect", "edu.cmu.lti.qalab.types.Answer");
     jcasType.ll_cas.ll_setBooleanValue(addr, ((Answer_Type)jcasType).casFeatCode_isCorrect, v);}    
+   
+    
+  //*--------------*
+  //* Feature: tokenList
+
+  /** getter for tokenList - gets 
+   * @generated */
+  public FSList getTokenList() {
+    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_tokenList == null)
+      jcasType.jcas.throwFeatMissing("tokenList", "edu.cmu.lti.qalab.types.Answer");
+    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Answer_Type)jcasType).casFeatCode_tokenList)));}
+    
+  /** setter for tokenList - sets  
+   * @generated */
+  public void setTokenList(FSList v) {
+    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_tokenList == null)
+      jcasType.jcas.throwFeatMissing("tokenList", "edu.cmu.lti.qalab.types.Answer");
+    jcasType.ll_cas.ll_setRefValue(addr, ((Answer_Type)jcasType).casFeatCode_tokenList, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: dependencies
+
+  /** getter for dependencies - gets 
+   * @generated */
+  public FSList getDependencies() {
+    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_dependencies == null)
+      jcasType.jcas.throwFeatMissing("dependencies", "edu.cmu.lti.qalab.types.Answer");
+    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Answer_Type)jcasType).casFeatCode_dependencies)));}
+    
+  /** setter for dependencies - sets  
+   * @generated */
+  public void setDependencies(FSList v) {
+    if (Answer_Type.featOkTst && ((Answer_Type)jcasType).casFeat_dependencies == null)
+      jcasType.jcas.throwFeatMissing("dependencies", "edu.cmu.lti.qalab.types.Answer");
+    jcasType.ll_cas.ll_setRefValue(addr, ((Answer_Type)jcasType).casFeatCode_dependencies, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     

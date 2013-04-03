@@ -65,6 +65,7 @@ public class SearchCandidates extends JCasAnnotator_ImplBase{
 				for(int j=0;j<results.size();j++){
 					SolrDocument doc=results.get(j);					
 					String sentence=doc.get("text").toString();
+					System.out.println(doc.get("id").toString());
 					System.out.println(j+"\t"+sentence);
 				}
 				
