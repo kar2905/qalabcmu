@@ -37,7 +37,7 @@
         <node>QuestionPhraseAnnotator</node>
         <node>QuestionNEAnnotator</node>
         <node>SearchCandidates</node>
-        <!--<node>AnswerExtractor</node> -->       
+        <node>AnswerExtractor</node>       
       </fixedFlow>
     </flowConstraints>
     <typePriorities/>
