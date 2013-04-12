@@ -45,13 +45,13 @@
 		<dependency>
 			<groupId>edu.cmu.lti.oaqa.core.provider</groupId>
 			<artifactId>solr-provider</artifactId>
-			<version>1.0.12</version>
+			<version>1.0.17-SNAPSHOT</version>
 		</dependency>
 
 	</dependencies>
 	<scm>
-		<connection>scm:git:git@github.com:alkeshpatel11/hw1-alkeshku.git</connection>
-		<developerConnection>scm:git:git@github.com:alkeshpatel11/hw1-alkeshku.git</developerConnection>
+		<connection>scm:git:git@github.com:kar2905/qalabcmu.git</connection>
+		<developerConnection>scm:git:git@github.com:kar2905/qalabcmu.git</developerConnection>
 	</scm>
 
 	<build>
@@ -75,7 +75,7 @@
 							<goal>perform</goal>
 						</goals>
 						<configuration>
-							<pomFileName>hw1-alkeshku/pom.xml</pomFileName>
+							<pomFileName>qa4mre-alzheimer-task/pom.xml</pomFileName>
 						</configuration>
 					</execution>
 				</executions>
