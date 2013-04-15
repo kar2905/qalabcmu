@@ -3,7 +3,8 @@
 	<frameworkImplementation>org.apache.uima.java</frameworkImplementation>
 	<primitive>false</primitive>
 	<delegateAnalysisEngineSpecifiers>
-		
+
+<!--  		
 		<delegateAnalysisEngine key="TextSegmenter">
 			<import location="annotators/TextSegmenter.xml" />			
 		</delegateAnalysisEngine>
@@ -19,7 +20,12 @@
 		<delegateAnalysisEngine key="StanfordNLPAnnotator">
 			<import location="annotators/StanfordNLPAnnotator.xml" />			
 		</delegateAnalysisEngine>
+-->
 		
+		<delegateAnalysisEngine key="NaiveAnswerQuestionAnnotator">
+			<import location="annotators/NaiveAnswerQuestionAnnotator.xml" />			
+		</delegateAnalysisEngine>
+<!--  
 		<delegateAnalysisEngine key="PhraseAnnotator">
 			<import location="annotators/PhraseAnnotator.xml" />			
 		</delegateAnalysisEngine>
@@ -27,7 +33,7 @@
 		<delegateAnalysisEngine key="NEAnnotator">
 			<import location="annotators/NEAnnotator.xml" />			
 		</delegateAnalysisEngine>
-		
+-->
 		
 
 	</delegateAnalysisEngineSpecifiers>
@@ -40,12 +46,16 @@
 		<configurationParameterSettings />
 		<flowConstraints>
 			<fixedFlow>
-				<node>TextSegmenter</node>
+				<!--   <node>TextSegmenter</node>
 				<node>StanfordSentenceAnnotator</node>						
 				<node>NoiseFilter</node>
+				<node>StanfordNLPAnnotator</node> -->
+				<node>NaiveAnswerQuestionAnnotator</node>	
+<!--  
 				<node>StanfordNLPAnnotator</node>	
 				<node>PhraseAnnotator</node>
 				<node>NEAnnotator</node>
+				-->
 			</fixedFlow>
 		</flowConstraints>
 		<typePriorities />

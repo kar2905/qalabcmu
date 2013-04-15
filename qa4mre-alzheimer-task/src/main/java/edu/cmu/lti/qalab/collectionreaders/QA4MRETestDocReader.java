@@ -84,6 +84,8 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 		}
 
 		Element readingTestElement = (Element) documents.item(nCurrDoc);
+		String rId = readingTestElement.getAttribute("r_id");
+		
 		NodeList testDocNodeList = readingTestElement
 				.getElementsByTagName("doc");
 
@@ -104,12 +106,14 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 		for (int i = 0; i < questionNodeList.getLength(); i++) {
 
 			Element questionEle = (Element) questionNodeList.item(i);
+			String questionId = questionEle.getAttribute("q_id");			
 			NodeList questionNode = questionEle.getElementsByTagName("q_str");
 			String questionStr = questionNode.item(0).getTextContent();
 			NodeList answerNodeList = questionEle
 					.getElementsByTagName("answer");
 
 			Question question = new Question(jcas);
+			question.setId(questionId);
 			question.setText(questionStr);
 			ArrayList<Answer> answerCollection = new ArrayList<Answer>();
 			for (int j = 0; j < answerNodeList.getLength(); j++) {
@@ -148,6 +152,7 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 		// put document in CAS
 		jcas.setDocumentText(docText);
 		TestDocument testDoc = new TestDocument(jcas);
+		testDoc.setReadingtestId(rId);
 		testDoc.setId(docId);
 		testDoc.setText(docText);
 		testDoc.setQaList(quetionAnswersFSList);
@@ -244,9 +249,12 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 			NodeList readingTestNodeList = topicElement
 					.getElementsByTagName("reading-test");
 			
+			
 			documents = readingTestNodeList;
-			Element eleReading=(Element)readingTestNodeList;
+			Element eleReading=(Element)readingTestNodeList.item(0);
 			String rId=eleReading.getAttribute("r_id");
+			//DEBUG
+			//System.out.format("r_id: %s\n", rId);
 		}
 
 	}

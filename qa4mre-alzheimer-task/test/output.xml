@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<output run_id="cmuq1301enen">
+<topic t_id="1" >
+	<reading-test r_id="1">
+		<question q_id="1" answered="YES">
+			<answer a_id="0"/>
+		</question>
+		<question q_id="2" answered="YES">
+			<answer a_id="0"/>
+		</question>
+		<question q_id="3" answered="YES">
+			<answer a_id="0"/>
+		</question>
+		<question q_id ="4" answered="NO" />
+		<question q_id="5" answered="YES">
+			<answer a_id="0"/>
+		</question>
+		<question q_id="6" answered="YES">
+			<answer a_id="0"/>
+		</question>
+		<question q_id="7" answered="YES">
+			<answer a_id="0"/>
+		</question>
+		<question q_id ="8" answered="NO" />
+		<question q_id="9" answered="YES">
+			<answer a_id="0"/>
+		</question>
+		<question q_id="10" answered="YES">
+			<answer a_id="0"/>
+		</question>
+	</reading-test>
+</topic>
+</output>

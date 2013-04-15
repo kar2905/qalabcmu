@@ -25,6 +25,8 @@
 			<groupId>edu.cmu.lti.qalab</groupId>
 			<artifactId>qa4mre-base</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+<!--   			<scope>system</scope>>
+			<systemPath>${project.basedir}/lib/qa4mre-base-0.0.1-SNAPSHOT.jar</systemPath> -->
 		</dependency>
 				
 		<dependency>
@@ -37,7 +39,7 @@
 			<artifactId>commons-compress</artifactId>
 			<version>1.2</version>
 		</dependency>
-		<dependency>
+<!--  		<dependency>
 			<groupId>abner</groupId>
 			<artifactId>abner</artifactId>
 			<version>1.5</version>
@@ -46,7 +48,7 @@
 			<groupId>edu.cmu.lti.oaqa.core.provider</groupId>
 			<artifactId>solr-provider</artifactId>
 			<version>1.0.12</version>
-		</dependency>
+		</dependency> -->
 
 	</dependencies>
 	<scm>
