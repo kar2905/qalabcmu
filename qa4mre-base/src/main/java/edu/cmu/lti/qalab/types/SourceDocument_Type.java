@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** 
- * Updated by JCasGen Wed Apr 03 13:15:52 EDT 2013
+ * Updated by JCasGen Sun Apr 14 21:09:16 EDT 2013
  * @generated */
 public class SourceDocument_Type extends Annotation_Type {
   /** @generated */
@@ -115,6 +115,24 @@ public class SourceDocument_Type extends Annotation_Type {
     ll_cas.ll_setRefValue(addr, casFeatCode_sentenceList, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_readingtestId;
+  /** @generated */
+  final int     casFeatCode_readingtestId;
+  /** @generated */ 
+  public String getReadingtestId(int addr) {
+        if (featOkTst && casFeat_readingtestId == null)
+      jcas.throwFeatMissing("readingtestId", "edu.cmu.lti.qalab.types.SourceDocument");
+    return ll_cas.ll_getStringValue(addr, casFeatCode_readingtestId);
+  }
+  /** @generated */    
+  public void setReadingtestId(int addr, String v) {
+        if (featOkTst && casFeat_readingtestId == null)
+      jcas.throwFeatMissing("readingtestId", "edu.cmu.lti.qalab.types.SourceDocument");
+    ll_cas.ll_setStringValue(addr, casFeatCode_readingtestId, v);}
+    
+  
 
 
 
@@ -139,6 +157,10 @@ public class SourceDocument_Type extends Annotation_Type {
  
     casFeat_sentenceList = jcas.getRequiredFeatureDE(casType, "sentenceList", "uima.cas.FSList", featOkTst);
     casFeatCode_sentenceList  = (null == casFeat_sentenceList) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_sentenceList).getCode();
+
+ 
+    casFeat_readingtestId = jcas.getRequiredFeatureDE(casType, "readingtestId", "uima.cas.String", featOkTst);
+    casFeatCode_readingtestId  = (null == casFeat_readingtestId) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_readingtestId).getCode();
 
   }
 }

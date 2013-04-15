@@ -12,8 +12,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Wed Apr 03 13:15:52 EDT 2013
- * XML source: /media/alkesh/Windows7_OS/Users/alkesh/git/qalabcmu/qa4mre-base/src/main/resources/TypeSystemDescriptor.xml
+ * Updated by JCasGen Sun Apr 14 21:09:16 EDT 2013
+ * XML source: /home/yibinl/workspace2/tmp_yibin/kartik_lab/qa4mre-base/src/main/resources/TypeSystemDescriptor.xml
  * @generated */
 public class SourceDocument extends Annotation {
   /** @generated
@@ -133,6 +133,24 @@ public class SourceDocument extends Annotation {
     if (SourceDocument_Type.featOkTst && ((SourceDocument_Type)jcasType).casFeat_sentenceList == null)
       jcasType.jcas.throwFeatMissing("sentenceList", "edu.cmu.lti.qalab.types.SourceDocument");
     jcasType.ll_cas.ll_setRefValue(addr, ((SourceDocument_Type)jcasType).casFeatCode_sentenceList, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: readingtestId
+
+  /** getter for readingtestId - gets reading_test id for output casconsumer to use
+   * @generated */
+  public String getReadingtestId() {
+    if (SourceDocument_Type.featOkTst && ((SourceDocument_Type)jcasType).casFeat_readingtestId == null)
+      jcasType.jcas.throwFeatMissing("readingtestId", "edu.cmu.lti.qalab.types.SourceDocument");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((SourceDocument_Type)jcasType).casFeatCode_readingtestId);}
+    
+  /** setter for readingtestId - sets reading_test id for output casconsumer to use 
+   * @generated */
+  public void setReadingtestId(String v) {
+    if (SourceDocument_Type.featOkTst && ((SourceDocument_Type)jcasType).casFeat_readingtestId == null)
+      jcasType.jcas.throwFeatMissing("readingtestId", "edu.cmu.lti.qalab.types.SourceDocument");
+    jcasType.ll_cas.ll_setStringValue(addr, ((SourceDocument_Type)jcasType).casFeatCode_readingtestId, v);}    
   }
 
     
