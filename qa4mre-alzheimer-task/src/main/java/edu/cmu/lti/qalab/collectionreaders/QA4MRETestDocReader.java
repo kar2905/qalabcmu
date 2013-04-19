@@ -245,8 +245,8 @@ public class QA4MRETestDocReader extends CollectionReader_ImplBase {
 					.getElementsByTagName("reading-test");
 			
 			documents = readingTestNodeList;
-			Element eleReading=(Element)readingTestNodeList;
-			String rId=eleReading.getAttribute("r_id");
+			//Element eleReading=(Element)readingTestNodeList;
+			//String rId=eleReading.getAttribute("r_id");
 		}
 
 	}
