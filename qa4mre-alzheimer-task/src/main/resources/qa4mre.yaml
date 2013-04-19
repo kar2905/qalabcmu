@@ -1,0 +1,94 @@
+configuration: 
+  name: qa4mre
+  author: ziy
+  
+persistence-provider:
+  inherit: persistence.local-persistence-provider
+
+collection-reader:
+  inherit: collectionreaders.CollectionReaderDescriptor
+
+pipeline:
+  # question and document annotations: data -> XMIs
+  - inherit: ecd.phase
+    name: TextSegmenter
+    options: |
+      - inherit: annotators.TextSegmenter
+
+  - inherit: ecd.phase
+    name: StanfordSentenceAnnotator
+    options: |
+      - inherit: annotators.StanfordSentenceAnnotator
+
+  - inherit: ecd.phase
+    name: NoiseFilter
+    options: |
+      - inherit: annotators.NoiseFilter
+
+  - inherit: ecd.phase
+    name: StanfordNLPAnnotator
+    options: |
+      - inherit: annotators.StanfordNLPAnnotator
+
+  - inherit: ecd.phase
+    name: PhraseAnnotator
+    options: |
+      - inherit: annotators.PhraseAnnotator
+
+  - inherit: ecd.phase
+    name: NEAnnotator
+    options: |
+      - inherit: annotators.NEAnnotator
+
+  # answer ranking: XMIs -> result
+  - inherit: ecd.phase
+    name: StanfordQuestionNLPAnnotator
+    options: |
+      - inherit: annotators.StanfordQuestionNLPAnnotator
+
+  - inherit: ecd.phase
+    name: QuestionPhraseAnnotator
+    options: |
+      - inherit: annotators.QuestionPhraseAnnotator
+
+  - inherit: ecd.phase
+    name: QuestionNEAnnotator
+    options: |
+      - inherit: annotators.QuestionNEAnnotator
+
+  - inherit: ecd.phase
+    name: SearchCandidates
+    options: |
+      - inherit: annotators.SearchCandidates
+
+  - inherit: ecd.phase
+    name: AnswerExtractor
+    options: |
+      - inherit: annotators.AnswerExtractor
+
+  # cas consumer    
+#   - inherit: consumers.NaiveScorerCasConsumer
+
+#  - inherit: consumers.NaiveScorerCasConsumer
+#
+#  - inherit: jdbc.eval.retrieval-aggregator-consumer
+#      
+#  - inherit: helloqa.eval.passage-map-aggregator-consumer      
+#    
+#post-process:
+#
+#  - inherit: helloqa.eval.keyterm-evaluator-consumer
+#  - inherit: report.csv-report-generator
+#    builders: |
+#      - inherit: helloqa.report.keyterm-report-component
+#
+#  - inherit: jdbc.eval.retrieval-evaluator-consumer
+#  - inherit: report.csv-report-generator
+#    builders: |
+#      - inherit: jdbc.report.f-measure-report-component
+#          
+#  - inherit: helloqa.eval.passage-map-evaluator-consumer
+#  - inherit: report.csv-report-generator
+#    builders: |
+#      - inherit: helloqa.report.map-report-component
+  

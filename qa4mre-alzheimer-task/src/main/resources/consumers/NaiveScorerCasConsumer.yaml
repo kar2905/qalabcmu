@@ -1,0 +1,6 @@
+class: edu.cmu.lti.qalab.casconsumers.NaiveScorerCasConsumer
+INPUT_DIR: /tmp/evaluation.tmp
+THRESHOLD: 3.0
+
+persistence-provider: |
+  inherit: persistence.local-persistence-provider
