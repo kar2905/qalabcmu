@@ -168,7 +168,7 @@ public class MingyansTFIDF extends JCasAnnotator_ImplBase {
 					max_prob = k;
 				k++;
 			}
-			cA.setQId(ansList.get(max_prob).getId());
+			cA.setQId(qa.getQuestion().getId());
 			cA.setText(ansList.get(max_prob).getText());
 			cA.setChoiceIndex(max_prob);
 			cA.addToIndexes();
