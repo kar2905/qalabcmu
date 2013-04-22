@@ -1,8 +1,5 @@
 package edu.cmu.lti.qalab.annotators;
 
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
@@ -19,8 +16,6 @@ import edu.cmu.lti.qalab.types.Answer;
 import edu.cmu.lti.qalab.types.Question;
 import edu.cmu.lti.qalab.types.QuestionAnswerSet;
 import edu.cmu.lti.qalab.types.TestDocument;
-import edu.cmu.lti.qalab.utils.Brackets;
-import edu.cmu.lti.qalab.utils.Utils;
 
 /**
  * This class annotates answers to each question in the reading document in the following way:

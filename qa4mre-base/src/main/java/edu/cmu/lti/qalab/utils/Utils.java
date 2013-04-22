@@ -16,6 +16,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 import org.uimafit.util.JCasUtil;
 
 import edu.cmu.lti.qalab.types.Answer;
+import edu.cmu.lti.qalab.types.CandidateAnswer;
 import edu.cmu.lti.qalab.types.CandidateSentence;
 import edu.cmu.lti.qalab.types.Dependency;
 import edu.cmu.lti.qalab.types.NER;
@@ -478,6 +479,17 @@ public class Utils {
 		return srcDoc;
 	}
 
+	public static CandidateAnswer getCandidateAnswerFromCAS(JCas jCas) {
+		FSIterator<Annotation> it = jCas.getAnnotationIndex(CandidateAnswer.type)
+				.iterator();
+		CandidateAnswer srcDoc = null;
+		if (it.hasNext()) {
+			srcDoc = (CandidateAnswer) it.next();
+		}
+		return srcDoc;
+	}
+
+	
 	public static CandidateSentence getCandidateSentenceFromCAS(JCas jCas) {
 		FSIterator it = jCas.getAnnotationIndex(CandidateSentence.type)
 				.iterator();

@@ -12,9 +12,7 @@ import org.apache.uima.resource.ResourceInitializationException;
 import abner.Tagger;
 
 import edu.cmu.lti.qalab.types.NER;
-import edu.cmu.lti.qalab.types.Question;
 import edu.cmu.lti.qalab.types.Sentence;
-import edu.cmu.lti.qalab.types.TestDocument;
 import edu.cmu.lti.qalab.utils.Utils;
 
 public class NEAnnotator extends JCasAnnotator_ImplBase{

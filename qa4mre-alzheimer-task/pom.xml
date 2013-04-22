@@ -39,7 +39,7 @@
 			<artifactId>commons-compress</artifactId>
 			<version>1.2</version>
 		</dependency>
-<!--  		<dependency>
+  		<dependency>
 			<groupId>abner</groupId>
 			<artifactId>abner</artifactId>
 			<version>1.5</version>
@@ -47,8 +47,8 @@
 		<dependency>
 			<groupId>edu.cmu.lti.oaqa.core.provider</groupId>
 			<artifactId>solr-provider</artifactId>
-			<version>1.0.12</version>
-		</dependency> -->
+			<version>1.0.17</version>
+		</dependency>
 
 	</dependencies>
 	<scm>

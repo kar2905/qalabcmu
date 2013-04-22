@@ -1,22 +1,19 @@
-package edu.cmu.lti.qalab.mingyans_annotators;
+package edu.cmu.lti.qalab.annotators;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
-import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.FSList;
-import org.apache.uima.jcas.tcas.Annotation;
 
-import edu.cmu.lti.qalab.types.Question;
+import edu.cmu.lti.qalab.types.Answer;
+import edu.cmu.lti.qalab.types.CandidateAnswer;
 import edu.cmu.lti.qalab.types.QuestionAnswerSet;
 import edu.cmu.lti.qalab.types.Sentence;
 import edu.cmu.lti.qalab.types.TestDocument;
@@ -31,26 +28,21 @@ import edu.cmu.lti.qalab.utils.Utils;
  * @author mingyans
  * 
  */
-public class WindowScoreCal extends JCasAnnotator_ImplBase {
-	
-	protected ArrayList<String> candidatewindow = new ArrayList<String>();
-	
+public class MingyansTFIDF extends JCasAnnotator_ImplBase {
+
+	ArrayList<String> candidatewindow = new ArrayList<String>();
+
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
-
-		System.out
-				.println("\n------------------------------------------\nWindowScoreCal\n------------------------------------------\n");
 
 		TestDocument testDoc = Utils.getTestDocumentFromCAS(jCas);
 		ArrayList<QuestionAnswerSet> qaSet = Utils.getQuestionAnswerSet(jCas);
 
 		for (QuestionAnswerSet qa : qaSet) {
-
 			ArrayList<Token> quesTokens = Utils.getTokenlistFromQuestion(qa
 					.getQuestion());
 
-			
-			ArrayList<Sentence> windows=getSenList(testDoc);
+			ArrayList<Sentence> windows = getSenList(testDoc);
 			int size = windows.size();
 
 			ArrayList<double[]> TF = new ArrayList<double[]>();
@@ -58,13 +50,13 @@ public class WindowScoreCal extends JCasAnnotator_ImplBase {
 			HashMap<Sentence, Double> scores = new HashMap<Sentence, Double>();
 
 			for (Sentence sen : windows) {
-				ArrayList<Token> wintokenList=getTokList(sen);
-				String windowstr="";
-				for(Token t:wintokenList){
-					windowstr+=t.getText()+" ";
+				ArrayList<Token> wintokenList = getTokList(sen);
+				String windowstr = "";
+				for (Token t : wintokenList) {
+					windowstr += t.getText() + " ";
 				}
 				String[] wintokens = windowstr.split(" ");
-						
+
 				double[] tf = new double[quesTokens.size()];
 				int i = 0;
 				for (Token token : quesTokens) {
@@ -89,6 +81,7 @@ public class WindowScoreCal extends JCasAnnotator_ImplBase {
 				}
 				TF.add(tf);
 			}
+
 			int index = 0;
 			for (Sentence sen : windows) {
 				double score = 0.0;
@@ -123,18 +116,69 @@ public class WindowScoreCal extends JCasAnnotator_ImplBase {
 					});
 
 			int i = 0;
-			String window="";
+			String window = "";
 			while (i < srtList.size() && i < 5) {
 				window += srtList.get(i).toString();
 				i++;
 			}
-			System.out.println("!!!!!!" + window);
-			candidatewindow.add(window);
+
+			String[] windows1 = window.split(" ");
+			ArrayList<Answer> ansList = Utils.getAnswerListFromQASet(qa);
+			int[] total = new int[ansList.size()];
+			int i1 = 0;
+			int max = 0;
+
+			for (Answer an : ansList) {
+				ArrayList<Token> ansToken = Utils.getTokenlistFromAnwser(an);
+				int freq = 0;
+				for (Token token : ansToken) {
+					for (String w : windows1) {
+						if (w.contains(token.getText())) {
+							freq++;
+						}
+					}
+				}
+				total[i1] += freq;
+				if (max < freq)
+					max = freq;
+				i1++;
+			}
+			int tot = 0;
+			for (int k = 0; k < ansList.size(); k++) {
+				tot += total[k];
+			}
+			CandidateAnswer cA = Utils.getCandidateAnswerFromCAS(jCas);
+			int k = 0;
+			int max_prob = 0;
+			for (Answer an : ansList) {
+				if (max == total[k]) {
+					an.setIsSelected(true);
+					max = -1;
+				} else if (max == 0) {
+					an.setIsSelected(true);
+					max = -1;
+				}
+
+				double prob = 0;
+				if (tot == 0)
+					prob = 0;
+				else
+					prob = (double) total[k] / tot;
+				if (max_prob < prob)
+					max_prob = k;
+				k++;
+			}
+			cA.setQId(ansList.get(max_prob).getId());
+			cA.setText(ansList.get(max_prob).getText());
+			cA.setChoiceIndex(max_prob);
+			cA.addToIndexes();
+			qa.setCandidateAnswer(cA);
+			qa.addToIndexes();
 		}
 	}
-	
+
 	public ArrayList<Sentence> getSenList(TestDocument testDoc) {
-		
+
 		FSList senList = testDoc.getSentenceList();
 		ArrayList<Sentence> sList = new ArrayList<Sentence>();
 		int i = 0;
@@ -151,9 +195,9 @@ public class WindowScoreCal extends JCasAnnotator_ImplBase {
 		}
 		return sList;
 	}
-	
+
 	public ArrayList<Token> getTokList(Sentence sen) {
-		
+
 		FSList tList = sen.getTokenList();
 		ArrayList<Token> stList = new ArrayList<Token>();
 		int i = 0;

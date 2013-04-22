@@ -12,8 +12,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Sun Apr 14 21:09:16 EDT 2013
- * XML source: /home/yibinl/workspace2/tmp_yibin/kartik_lab/qa4mre-base/src/main/resources/TypeSystemDescriptor.xml
+ * Updated by JCasGen Mon Apr 22 01:17:03 EDT 2013
+ * XML source: C:/Users/s/Desktop/qalab/qalabcmu/qa4mre-base/src/main/resources/TypeSystemDescriptor.xml
  * @generated */
 public class QuestionAnswerSet extends Annotation {
   /** @generated
@@ -115,6 +115,24 @@ public class QuestionAnswerSet extends Annotation {
     if (QuestionAnswerSet_Type.featOkTst && ((QuestionAnswerSet_Type)jcasType).casFeat_candidateSentenceList == null)
       jcasType.jcas.throwFeatMissing("candidateSentenceList", "edu.cmu.lti.qalab.types.QuestionAnswerSet");
     jcasType.ll_cas.ll_setRefValue(addr, ((QuestionAnswerSet_Type)jcasType).casFeatCode_candidateSentenceList, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: candidateAnswer
+
+  /** getter for candidateAnswer - gets 
+   * @generated */
+  public CandidateAnswer getCandidateAnswer() {
+    if (QuestionAnswerSet_Type.featOkTst && ((QuestionAnswerSet_Type)jcasType).casFeat_candidateAnswer == null)
+      jcasType.jcas.throwFeatMissing("candidateAnswer", "edu.cmu.lti.qalab.types.QuestionAnswerSet");
+    return (CandidateAnswer)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((QuestionAnswerSet_Type)jcasType).casFeatCode_candidateAnswer)));}
+    
+  /** setter for candidateAnswer - sets  
+   * @generated */
+  public void setCandidateAnswer(CandidateAnswer v) {
+    if (QuestionAnswerSet_Type.featOkTst && ((QuestionAnswerSet_Type)jcasType).casFeat_candidateAnswer == null)
+      jcasType.jcas.throwFeatMissing("candidateAnswer", "edu.cmu.lti.qalab.types.QuestionAnswerSet");
+    jcasType.ll_cas.ll_setRefValue(addr, ((QuestionAnswerSet_Type)jcasType).casFeatCode_candidateAnswer, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     

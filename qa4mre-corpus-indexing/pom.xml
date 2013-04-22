@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>edu.cmu.lti.oaqa.core.provider</groupId>
 			<artifactId>solr-provider</artifactId>
-			<version>1.0.12</version>
+			<version>1.0.17</version>
 		</dependency>
 	</dependencies>
 	<scm>
