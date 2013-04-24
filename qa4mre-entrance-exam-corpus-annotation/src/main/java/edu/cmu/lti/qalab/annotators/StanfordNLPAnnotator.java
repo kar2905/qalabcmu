@@ -130,6 +130,10 @@ public class StanfordNLPAnnotator extends JCasAnnotator_ImplBase {
 		}
 
 		FSList fsSentList = Utils.createSentenceList(jCas, sentList);
+		/*System.out.println(sentList.get(0));
+		System.out.println(sentList.get(1));
+		System.out.println(fsSentList.getNthElement(0));
+		System.out.println(fsSentList.getNthElement(1));*/
 		
 		//this.iterateFSList(fsSentList);
 		fsSentList.addToIndexes();

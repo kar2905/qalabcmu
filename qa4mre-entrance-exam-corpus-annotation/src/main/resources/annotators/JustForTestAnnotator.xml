@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<collectionReaderDescription xmlns="http://uima.apache.org/resourceSpecifier">
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <implementationName>edu.cmu.lti.qalab.collectionreaders.EntranceExamCorpusReader</implementationName>
-  <processingResourceMetaData>
-    <name>CollectionReaderDescriptor</name>
+  <primitive>true</primitive>
+  <annotatorImplementationName>edu.cmu.lti.qalab.annotators.JustForTestAnnotator</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>StanfordNLPDescriptor</name>
     <description/>
     <version>1.0</version>
     <vendor/>
     <configurationParameters>
       <configurationParameter>
-        <name>INPUT_DIR</name>
-        <description>Input file to read</description>
+        <name>NOISE_THRESHOLD</name>
+        <description>noise score</description>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
@@ -18,17 +19,13 @@
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
-        <name>INPUT_DIR</name>
+        <name>NOISE_THRESHOLD</name>
         <value>
-          <string>data/test/</string>
+          <string>0.20</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>
-    <typeSystemDescription>
-      <imports>
-        <import name="TypeSystemDescriptor"/>
-      </imports>
-    </typeSystemDescription>
+    <typeSystemDescription/>
     <typePriorities/>
     <fsIndexCollection/>
     <capabilities>
@@ -40,9 +37,9 @@
     </capabilities>
     <operationalProperties>
       <modifiesCas>true</modifiesCas>
-      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
-      <outputsNewCASes>true</outputsNewCASes>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
     </operationalProperties>
-  </processingResourceMetaData>
+  </analysisEngineMetaData>
   <resourceManagerConfiguration/>
-</collectionReaderDescription>
+</analysisEngineDescription>

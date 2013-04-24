@@ -33,7 +33,7 @@ import edu.stanford.nlp.util.CoreMap;
 
 public class NaiveAnalyzer extends JCasAnnotator_ImplBase {
 
-	private StanfordCoreNLP stanfordAnnotator;
+	//private StanfordCoreNLP stanfordAnnotator;
 
 	@Override
 	public void initialize(UimaContext context)
@@ -41,7 +41,7 @@ public class NaiveAnalyzer extends JCasAnnotator_ImplBase {
 		super.initialize(context);
 		Properties props = new Properties();
 		props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse");
-		stanfordAnnotator = new StanfordCoreNLP(props);
+		//stanfordAnnotator = new StanfordCoreNLP(props);
 	}
 
 	public Object getAnnotationObject(JCas jCas, int type) {
@@ -74,12 +74,12 @@ public class NaiveAnalyzer extends JCasAnnotator_ImplBase {
 					for (String q:qword){
 						for (String s:sword){
 							double d = sc.calculateDistance(q, s);
-							System.out.println(q + "\t" +s+"\t"+ d);
+							//System.out.println(q + "\t" +s+"\t"+ d);
 							score+=d;
 						}
 					}
 					//double score = sc.calculateDistance(line, question);
-					System.out.println(line + "\t" +question+"\t"+ score);
+					//System.out.println(line + "\t" +question+"\t"+ score);
 					qdis.add(score);
 				}
 				ArrayList<Answer> ansL = Utils.getAnswerListFromQAset(qas);
@@ -102,13 +102,13 @@ public class NaiveAnalyzer extends JCasAnnotator_ImplBase {
 							}
 						}
 						//double score = sc.calculateDistance(line, answer);
-						System.out.println(line + "\t" +answer+"\t"+ score);
+						//System.out.println(line + "\t" +answer+"\t"+ score);
 						adis.add(score);
 					}
 					adisl.add(adis);
 				}
 				int choice = getOneChoice(qdis, adisl);
-				System.out.println("Final choice for this question:" + choice);
+				//System.out.println("Final choice for this question:" + choice);
 			} catch (Exception e) {
 				System.out.println("");
 			}
