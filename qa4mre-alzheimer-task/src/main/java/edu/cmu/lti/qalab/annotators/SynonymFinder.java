@@ -156,6 +156,11 @@ public class SynonymFinder {
 		}
 	}
 
+	/**
+	 * returns a list of synonym of a given word.
+	 * @param word
+	 * @return list of synonym
+	 */
 	public static List<String> getSynonym(String word) {
 		List<String> res = new LinkedList<String>();
 		if (dict.containsKey(word)) {
@@ -164,9 +169,13 @@ public class SynonymFinder {
 		return res;
 	}
 
+	/**
+	 * test
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		String[] ss = { "aromatase", "AD", "androgen", "BACE1",
-				"actinomycin D", "APP23", "testosterone" };
+				"actinomycin D", "APP23", "testosterone",  "APP" };
 		for (String sss : ss) {
 			List<String> synos = SynonymFinder.getSynonym(sss);
 			for (String s : synos) {
