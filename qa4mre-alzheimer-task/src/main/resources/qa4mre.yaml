@@ -40,6 +40,11 @@ pipeline:
     options: |
       - inherit: annotators.NEAnnotator
 
+  - inherit: ecd.phase
+    name: CasConsumer
+    options: |
+      - inherit: consumers.CasConsumerDescriptor
+
   # answer ranking: XMIs -> result
   - inherit: ecd.phase
     name: StanfordQuestionNLPAnnotator
@@ -65,3 +70,11 @@ pipeline:
     name: AnswerExtractor
     options: |
       - inherit: annotators.AnswerExtractor
+
+  - inherit: ecd.phase
+    name: CasConsumerResult
+    options: |
+      - inherit: consumers.CasConsumerResultDescriptor
+
+    
+    
