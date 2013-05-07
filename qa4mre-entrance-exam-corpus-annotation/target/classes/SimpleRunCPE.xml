@@ -11,6 +11,9 @@
     <delegateAnalysisEngine key="StanfordQuestionNLPAnnotator">
       <import location="annotators/StanfordQuestionNLPAnnotator.xml"/>
     </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="JustForTest">
+      <import location="annotators/JustForTestAnnotator.xml"/>
+    </delegateAnalysisEngine>
     <delegateAnalysisEngine key="NaiveAnalyzer">
       <import location="annotators/NaiveAnalyzer.xml"/>
     </delegateAnalysisEngine>
@@ -25,6 +28,7 @@
     <flowConstraints>
       <fixedFlow>
         <node>StanfordNLPAnnotator</node>
+        <!--  <node>JustForTest</node> -->
         <node>StanfordQuestionNLPAnnotator</node>
         <node>StanfordAnswerNLPAnnotator</node>
         <node>NaiveAnalyzer</node>
