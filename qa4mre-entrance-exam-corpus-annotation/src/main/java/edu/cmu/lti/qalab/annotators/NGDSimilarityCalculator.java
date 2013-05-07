@@ -5,13 +5,35 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.apache.xerces.impl.xs.identity.Selector.Matcher;
 
 public class NGDSimilarityCalculator {
+	private static int MAXCACHESIZE = 100000;
 	private static final String GOOGLE_SEARCH_SITE_PREFIX = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&";
 	protected final static double logN = Math.log(1.0e12);
+	private Map<String, Double> cache;
+	
+	NGDSimilarityCalculator () {
+		cache = new HashMap<String, Double>();
+	}
+	
+	public Double getDistance (String term1, String term2) throws IOException {
+		String v1 = term1.toLowerCase();
+		String v2 = term2.toLowerCase();
+		
+		if ( cache.size() > MAXCACHESIZE ) clearCache();
+		
+		if ( cache.containsKey(v1 + " " + v2)) return cache.get(v1 + " " + v2);
+		else {
+			double distance = calculateDistance(v1, v2);
+			cache.put(v1 + " " + v2, distance);
+			return distance;
+		}
+	}
 
 	public Double calculateDistance(String term1, String term2) throws IOException {
 		double distance = 0.0;
@@ -78,5 +100,9 @@ public class NGDSimilarityCalculator {
 		}
 		result = result.substring(3);
 		return result;
+	}
+	
+	public void clearCache() {
+        cache = new HashMap<String, Double>();
 	}
 }
