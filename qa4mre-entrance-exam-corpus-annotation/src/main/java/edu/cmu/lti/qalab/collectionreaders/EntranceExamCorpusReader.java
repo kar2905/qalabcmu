@@ -219,6 +219,7 @@ public class EntranceExamCorpusReader extends CollectionReader_ImplBase {
 	@Override
 	public boolean hasNext() throws IOException, CollectionException {
 		// return nCurrFile < 10;
+		System.out.println(documents.length);
 		return nCurrFile < documents.length;
 	}
 
