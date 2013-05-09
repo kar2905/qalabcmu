@@ -56,6 +56,11 @@
       <artifactId>jdbc-providers</artifactId>
       <version>2.3.1</version>
     </dependency>
+    <dependency>
+      <groupId>de.linguatools.disco</groupId>
+      <artifactId>disco</artifactId>
+      <version>1.4</version>
+    </dependency>
   </dependencies>
   <scm>
     <connection>scm:git:git@github.com:kar2905/qalabcmu.git</connection>
