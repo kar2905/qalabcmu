@@ -13,8 +13,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Wed Apr 03 13:15:52 EDT 2013
- * XML source: /media/alkesh/Windows7_OS/Users/alkesh/git/qalabcmu/qa4mre-base/src/main/resources/TypeSystemDescriptor.xml
+ * Updated by JCasGen Thu May 09 06:41:19 EDT 2013
+ * XML source: /media/alkesh/Windows7_OS/Users/alkesh/git/qalab-cse/qalabcmu/qa4mre-base/src/main/resources/TypeSystemDescriptor.xml
  * @generated */
 public class CandidateSentence extends Annotation {
   /** @generated
@@ -98,6 +98,42 @@ public class CandidateSentence extends Annotation {
     if (CandidateSentence_Type.featOkTst && ((CandidateSentence_Type)jcasType).casFeat_sentence == null)
       jcasType.jcas.throwFeatMissing("sentence", "edu.cmu.lti.qalab.types.CandidateSentence");
     jcasType.ll_cas.ll_setRefValue(addr, ((CandidateSentence_Type)jcasType).casFeatCode_sentence, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: depMatchScore
+
+  /** getter for depMatchScore - gets 
+   * @generated */
+  public double getDepMatchScore() {
+    if (CandidateSentence_Type.featOkTst && ((CandidateSentence_Type)jcasType).casFeat_depMatchScore == null)
+      jcasType.jcas.throwFeatMissing("depMatchScore", "edu.cmu.lti.qalab.types.CandidateSentence");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((CandidateSentence_Type)jcasType).casFeatCode_depMatchScore);}
+    
+  /** setter for depMatchScore - sets  
+   * @generated */
+  public void setDepMatchScore(double v) {
+    if (CandidateSentence_Type.featOkTst && ((CandidateSentence_Type)jcasType).casFeat_depMatchScore == null)
+      jcasType.jcas.throwFeatMissing("depMatchScore", "edu.cmu.lti.qalab.types.CandidateSentence");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((CandidateSentence_Type)jcasType).casFeatCode_depMatchScore, v);}    
+   
+    
+  //*--------------*
+  //* Feature: synonymMatchScore
+
+  /** getter for synonymMatchScore - gets 
+   * @generated */
+  public double getSynonymMatchScore() {
+    if (CandidateSentence_Type.featOkTst && ((CandidateSentence_Type)jcasType).casFeat_synonymMatchScore == null)
+      jcasType.jcas.throwFeatMissing("synonymMatchScore", "edu.cmu.lti.qalab.types.CandidateSentence");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((CandidateSentence_Type)jcasType).casFeatCode_synonymMatchScore);}
+    
+  /** setter for synonymMatchScore - sets  
+   * @generated */
+  public void setSynonymMatchScore(double v) {
+    if (CandidateSentence_Type.featOkTst && ((CandidateSentence_Type)jcasType).casFeat_synonymMatchScore == null)
+      jcasType.jcas.throwFeatMissing("synonymMatchScore", "edu.cmu.lti.qalab.types.CandidateSentence");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((CandidateSentence_Type)jcasType).casFeatCode_synonymMatchScore, v);}    
   }
 
     

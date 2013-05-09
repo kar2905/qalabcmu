@@ -15,7 +15,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** 
- * Updated by JCasGen Wed Apr 03 13:15:52 EDT 2013
+ * Updated by JCasGen Thu May 09 06:41:19 EDT 2013
  * @generated */
 public class CandidateSentence_Type extends Annotation_Type {
   /** @generated */
@@ -80,6 +80,42 @@ public class CandidateSentence_Type extends Annotation_Type {
     ll_cas.ll_setRefValue(addr, casFeatCode_sentence, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_depMatchScore;
+  /** @generated */
+  final int     casFeatCode_depMatchScore;
+  /** @generated */ 
+  public double getDepMatchScore(int addr) {
+        if (featOkTst && casFeat_depMatchScore == null)
+      jcas.throwFeatMissing("depMatchScore", "edu.cmu.lti.qalab.types.CandidateSentence");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_depMatchScore);
+  }
+  /** @generated */    
+  public void setDepMatchScore(int addr, double v) {
+        if (featOkTst && casFeat_depMatchScore == null)
+      jcas.throwFeatMissing("depMatchScore", "edu.cmu.lti.qalab.types.CandidateSentence");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_depMatchScore, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_synonymMatchScore;
+  /** @generated */
+  final int     casFeatCode_synonymMatchScore;
+  /** @generated */ 
+  public double getSynonymMatchScore(int addr) {
+        if (featOkTst && casFeat_synonymMatchScore == null)
+      jcas.throwFeatMissing("synonymMatchScore", "edu.cmu.lti.qalab.types.CandidateSentence");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_synonymMatchScore);
+  }
+  /** @generated */    
+  public void setSynonymMatchScore(int addr, double v) {
+        if (featOkTst && casFeat_synonymMatchScore == null)
+      jcas.throwFeatMissing("synonymMatchScore", "edu.cmu.lti.qalab.types.CandidateSentence");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_synonymMatchScore, v);}
+    
+  
 
 
 
@@ -96,6 +132,14 @@ public class CandidateSentence_Type extends Annotation_Type {
  
     casFeat_sentence = jcas.getRequiredFeatureDE(casType, "sentence", "edu.cmu.lti.qalab.types.Sentence", featOkTst);
     casFeatCode_sentence  = (null == casFeat_sentence) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_sentence).getCode();
+
+ 
+    casFeat_depMatchScore = jcas.getRequiredFeatureDE(casType, "depMatchScore", "uima.cas.Double", featOkTst);
+    casFeatCode_depMatchScore  = (null == casFeat_depMatchScore) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_depMatchScore).getCode();
+
+ 
+    casFeat_synonymMatchScore = jcas.getRequiredFeatureDE(casType, "synonymMatchScore", "uima.cas.Double", featOkTst);
+    casFeatCode_synonymMatchScore  = (null == casFeat_synonymMatchScore) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_synonymMatchScore).getCode();
 
   }
 }

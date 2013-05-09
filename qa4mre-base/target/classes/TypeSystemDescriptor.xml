@@ -297,14 +297,19 @@
       <supertypeName>uima.tcas.Annotation</supertypeName>
       <features>
         <featureDescription>
-          <name>synList</name>
+          <name>text</name>
           <description/>
-          <rangeTypeName>uima.cas.StringList</rangeTypeName>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
         <featureDescription>
           <name>source</name>
           <description/>
           <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>weight</name>
+          <description/>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
         </featureDescription>
       </features>
     </typeDescription>
@@ -359,6 +364,21 @@
           <name>sentence</name>
           <description/>
           <rangeTypeName>edu.cmu.lti.qalab.types.Sentence</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>depMatchScore</name>
+          <description/>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>synonymMatchScore</name>
+          <description/>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>PMIScore</name>
+          <description/>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
         </featureDescription>
       </features>
     </typeDescription>
