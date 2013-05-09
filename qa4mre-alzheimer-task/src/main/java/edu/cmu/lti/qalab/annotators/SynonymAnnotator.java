@@ -16,18 +16,16 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.FSList;
 import org.apache.uima.resource.ResourceInitializationException;
 
-import abner.Tagger;
 import edu.cmu.lti.qalab.types.NER;
 import edu.cmu.lti.qalab.types.NounPhrase;
 import edu.cmu.lti.qalab.types.Sentence;
 import edu.cmu.lti.qalab.types.Synonym;
 import edu.cmu.lti.qalab.utils.Utils;
-import edu.umass.cs.mallet.base.types.FeatureConjunction.List;
 
 public class SynonymAnnotator extends JCasAnnotator_ImplBase {
 
-	public static final String FILE_NAME = "lib/gene_ontology_ext.obo";
-	public static final String GIGA_WORD = "lib/cmudict.0.7a.gigaword.freq";
+	public static String FILE_NAME = "lib/gene_ontology_ext.obo";
+	public static String GIGA_WORD = "lib/cmudict.0.7a.gigaword.freq";
 	private static HashMap<String, LinkedList<String>> dict = new HashMap<String, LinkedList<String>>();
 	private static HashMap<String, Integer> gigaMap = new HashMap<String, Integer>();
 	public static final int gigaThreshold = 400; // we treat words that have
@@ -38,6 +36,9 @@ public class SynonymAnnotator extends JCasAnnotator_ImplBase {
 	public void initialize(UimaContext context)
 			throws ResourceInitializationException {
 		super.initialize(context);
+		FILE_NAME=(String)context.getConfigParameterValue("FILE_NAME");
+		GIGA_WORD=(String)context.getConfigParameterValue("GIGA_WORD");
+				
 		try{
 			startup();
 		}catch(Exception e){

@@ -38,8 +38,7 @@ public class AnswerChoiceCandAnsPMIScorer extends JCasAnnotator_ImplBase {
 		String serverUrl = (String) context
 				.getConfigParameterValue("SOLR_SERVER_URL");
 		K_CANDIDATES=Integer.parseInt((String)context.getConfigParameterValue("K_CANDIDATES"));
-		// String stopFile = (String)
-		// context.getConfigParameterValue("SOLR_CORE");
+		
 		try {
 			this.solrWrapper = new SolrWrapper(serverUrl);
 			// loadStopWords(stopFile);
