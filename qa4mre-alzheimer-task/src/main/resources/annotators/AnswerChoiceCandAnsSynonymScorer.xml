@@ -2,42 +2,32 @@
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>true</primitive>
-  <annotatorImplementationName>edu.cmu.lti.qalab.annotators.SynonymAnnotator</annotatorImplementationName>
+  <annotatorImplementationName>edu.cmu.lti.qalab.answer_ranking.AnswerChoiceCandAnsSynonymScorer</annotatorImplementationName>
   <analysisEngineMetaData>
-    <name>SynonymAnnotatorDescriptor</name>
+    <name>AnswerChoiceCandAnsSynonymScorerDescriptor</name>
     <description/>
     <version>1.0</version>
     <vendor/>
-    <configurationParameters>
+    <!-- <configurationParameters>
       <configurationParameter>
-        <name>FILE_NAME</name>
-        <description>synonym file</description>
+        <name>NOISE_THRESHOLD</name>
+        <description>noise score</description>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>
-      <configurationParameter>
-        <name>GIGA_WORD</name>
-        <description>synonym gigaword file</description>
-        <type>String</type>
-        <multiValued>false</multiValued>
-        <mandatory>false</mandatory>
-      </configurationParameter>      
+      
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
-        <name>FILE_NAME</name>
+        <name>NOISE_THRESHOLD</name>
         <value>
-          <string>data/gene_ontology_ext.obo</string>
+          <string>0.20</string>
         </value>
       </nameValuePair>     
-      <nameValuePair>
-        <name>GIGA_WORD</name>
-        <value>
-          <string>data/cmudict.0.7a.gigaword.freq</string>
-        </value>
-      </nameValuePair>
-    </configurationParameterSettings>     
+    </configurationParameterSettings>
+     -->
+    
     <typeSystemDescription/>
     <typePriorities/>
     <fsIndexCollection/>
