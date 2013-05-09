@@ -15,7 +15,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** 
- * Updated by JCasGen Thu May 09 06:41:19 EDT 2013
+ * Updated by JCasGen Thu May 09 16:57:30 EDT 2013
  * @generated */
 public class CandidateSentence_Type extends Annotation_Type {
   /** @generated */
@@ -116,6 +116,24 @@ public class CandidateSentence_Type extends Annotation_Type {
     ll_cas.ll_setDoubleValue(addr, casFeatCode_synonymMatchScore, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_candAnswerList;
+  /** @generated */
+  final int     casFeatCode_candAnswerList;
+  /** @generated */ 
+  public int getCandAnswerList(int addr) {
+        if (featOkTst && casFeat_candAnswerList == null)
+      jcas.throwFeatMissing("candAnswerList", "edu.cmu.lti.qalab.types.CandidateSentence");
+    return ll_cas.ll_getRefValue(addr, casFeatCode_candAnswerList);
+  }
+  /** @generated */    
+  public void setCandAnswerList(int addr, int v) {
+        if (featOkTst && casFeat_candAnswerList == null)
+      jcas.throwFeatMissing("candAnswerList", "edu.cmu.lti.qalab.types.CandidateSentence");
+    ll_cas.ll_setRefValue(addr, casFeatCode_candAnswerList, v);}
+    
+  
 
 
 
@@ -140,6 +158,10 @@ public class CandidateSentence_Type extends Annotation_Type {
  
     casFeat_synonymMatchScore = jcas.getRequiredFeatureDE(casType, "synonymMatchScore", "uima.cas.Double", featOkTst);
     casFeatCode_synonymMatchScore  = (null == casFeat_synonymMatchScore) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_synonymMatchScore).getCode();
+
+ 
+    casFeat_candAnswerList = jcas.getRequiredFeatureDE(casType, "candAnswerList", "uima.cas.FSList", featOkTst);
+    casFeatCode_candAnswerList  = (null == casFeat_candAnswerList) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_candAnswerList).getCode();
 
   }
 }

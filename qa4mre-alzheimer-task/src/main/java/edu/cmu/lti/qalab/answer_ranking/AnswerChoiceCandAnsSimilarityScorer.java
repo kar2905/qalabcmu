@@ -103,11 +103,11 @@ public class AnswerChoiceCandAnsSimilarityScorer extends JCasAnnotator_ImplBase 
 					System.out.println(choiceList.get(j).getText() + "\t"
 							+ nnMatch);
 
-					CandidateAnswer candAnswer = new CandidateAnswer(aJCas);
+					CandidateAnswer candAnswer = Utils.fromFSListToCollection(candSent.getCandAnswerList(),CandidateAnswer.class).get(j);//new CandidateAnswer(aJCas);;
 					candAnswer.setText(answer.getText());
 					candAnswer.setQId(answer.getQuestionId());
 					candAnswer.setChoiceIndex(j);
-					candAnswer.setSynonymScore(nnMatch);
+					candAnswer.setSimilarityScore(nnMatch);
 					candAnsList.add(candAnswer);
 				}
 

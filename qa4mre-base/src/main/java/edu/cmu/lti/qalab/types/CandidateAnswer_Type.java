@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** 
- * Updated by JCasGen Thu May 09 06:41:19 EDT 2013
+ * Updated by JCasGen Thu May 09 16:57:30 EDT 2013
  * @generated */
 public class CandidateAnswer_Type extends Annotation_Type {
   /** @generated */
@@ -99,20 +99,56 @@ public class CandidateAnswer_Type extends Annotation_Type {
   
  
   /** @generated */
-  final Feature casFeat_score;
+  final Feature casFeat_PMIScore;
   /** @generated */
-  final int     casFeatCode_score;
+  final int     casFeatCode_PMIScore;
   /** @generated */ 
-  public double getScore(int addr) {
-        if (featOkTst && casFeat_score == null)
-      jcas.throwFeatMissing("score", "edu.cmu.lti.qalab.types.CandidateAnswer");
-    return ll_cas.ll_getDoubleValue(addr, casFeatCode_score);
+  public double getPMIScore(int addr) {
+        if (featOkTst && casFeat_PMIScore == null)
+      jcas.throwFeatMissing("PMIScore", "edu.cmu.lti.qalab.types.CandidateAnswer");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_PMIScore);
   }
   /** @generated */    
-  public void setScore(int addr, double v) {
-        if (featOkTst && casFeat_score == null)
-      jcas.throwFeatMissing("score", "edu.cmu.lti.qalab.types.CandidateAnswer");
-    ll_cas.ll_setDoubleValue(addr, casFeatCode_score, v);}
+  public void setPMIScore(int addr, double v) {
+        if (featOkTst && casFeat_PMIScore == null)
+      jcas.throwFeatMissing("PMIScore", "edu.cmu.lti.qalab.types.CandidateAnswer");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_PMIScore, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_similarityScore;
+  /** @generated */
+  final int     casFeatCode_similarityScore;
+  /** @generated */ 
+  public double getSimilarityScore(int addr) {
+        if (featOkTst && casFeat_similarityScore == null)
+      jcas.throwFeatMissing("similarityScore", "edu.cmu.lti.qalab.types.CandidateAnswer");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_similarityScore);
+  }
+  /** @generated */    
+  public void setSimilarityScore(int addr, double v) {
+        if (featOkTst && casFeat_similarityScore == null)
+      jcas.throwFeatMissing("similarityScore", "edu.cmu.lti.qalab.types.CandidateAnswer");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_similarityScore, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_synonymScore;
+  /** @generated */
+  final int     casFeatCode_synonymScore;
+  /** @generated */ 
+  public double getSynonymScore(int addr) {
+        if (featOkTst && casFeat_synonymScore == null)
+      jcas.throwFeatMissing("synonymScore", "edu.cmu.lti.qalab.types.CandidateAnswer");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_synonymScore);
+  }
+  /** @generated */    
+  public void setSynonymScore(int addr, double v) {
+        if (featOkTst && casFeat_synonymScore == null)
+      jcas.throwFeatMissing("synonymScore", "edu.cmu.lti.qalab.types.CandidateAnswer");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_synonymScore, v);}
     
   
 
@@ -137,8 +173,16 @@ public class CandidateAnswer_Type extends Annotation_Type {
     casFeatCode_choiceIndex  = (null == casFeat_choiceIndex) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_choiceIndex).getCode();
 
  
-    casFeat_score = jcas.getRequiredFeatureDE(casType, "score", "uima.cas.Double", featOkTst);
-    casFeatCode_score  = (null == casFeat_score) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_score).getCode();
+    casFeat_PMIScore = jcas.getRequiredFeatureDE(casType, "PMIScore", "uima.cas.Double", featOkTst);
+    casFeatCode_PMIScore  = (null == casFeat_PMIScore) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_PMIScore).getCode();
+
+ 
+    casFeat_similarityScore = jcas.getRequiredFeatureDE(casType, "similarityScore", "uima.cas.Double", featOkTst);
+    casFeatCode_similarityScore  = (null == casFeat_similarityScore) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_similarityScore).getCode();
+
+ 
+    casFeat_synonymScore = jcas.getRequiredFeatureDE(casType, "synonymScore", "uima.cas.Double", featOkTst);
+    casFeatCode_synonymScore  = (null == casFeat_synonymScore) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_synonymScore).getCode();
 
   }
 }

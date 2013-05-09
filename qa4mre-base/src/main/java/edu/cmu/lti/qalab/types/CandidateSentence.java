@@ -9,11 +9,12 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 
+import org.apache.uima.jcas.cas.FSList;
 import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Thu May 09 06:41:19 EDT 2013
+ * Updated by JCasGen Thu May 09 16:57:30 EDT 2013
  * XML source: /media/alkesh/Windows7_OS/Users/alkesh/git/qalab-cse/qalabcmu/qa4mre-base/src/main/resources/TypeSystemDescriptor.xml
  * @generated */
 public class CandidateSentence extends Annotation {
@@ -134,6 +135,24 @@ public class CandidateSentence extends Annotation {
     if (CandidateSentence_Type.featOkTst && ((CandidateSentence_Type)jcasType).casFeat_synonymMatchScore == null)
       jcasType.jcas.throwFeatMissing("synonymMatchScore", "edu.cmu.lti.qalab.types.CandidateSentence");
     jcasType.ll_cas.ll_setDoubleValue(addr, ((CandidateSentence_Type)jcasType).casFeatCode_synonymMatchScore, v);}    
+   
+    
+  //*--------------*
+  //* Feature: candAnswerList
+
+  /** getter for candAnswerList - gets 
+   * @generated */
+  public FSList getCandAnswerList() {
+    if (CandidateSentence_Type.featOkTst && ((CandidateSentence_Type)jcasType).casFeat_candAnswerList == null)
+      jcasType.jcas.throwFeatMissing("candAnswerList", "edu.cmu.lti.qalab.types.CandidateSentence");
+    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((CandidateSentence_Type)jcasType).casFeatCode_candAnswerList)));}
+    
+  /** setter for candAnswerList - sets  
+   * @generated */
+  public void setCandAnswerList(FSList v) {
+    if (CandidateSentence_Type.featOkTst && ((CandidateSentence_Type)jcasType).casFeat_candAnswerList == null)
+      jcasType.jcas.throwFeatMissing("candAnswerList", "edu.cmu.lti.qalab.types.CandidateSentence");
+    jcasType.ll_cas.ll_setRefValue(addr, ((CandidateSentence_Type)jcasType).casFeatCode_candAnswerList, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     

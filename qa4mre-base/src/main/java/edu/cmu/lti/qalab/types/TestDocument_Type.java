@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 
 
 /** 
- * Updated by JCasGen Thu May 09 06:41:19 EDT 2013
+ * Updated by JCasGen Thu May 09 16:57:30 EDT 2013
  * @generated */
 public class TestDocument_Type extends SourceDocument_Type {
   /** @generated */

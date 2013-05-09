@@ -12,7 +12,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Thu May 09 06:41:18 EDT 2013
+ * Updated by JCasGen Thu May 09 16:57:30 EDT 2013
  * XML source: /media/alkesh/Windows7_OS/Users/alkesh/git/qalab-cse/qalabcmu/qa4mre-base/src/main/resources/TypeSystemDescriptor.xml
  * @generated */
 public class Answer extends Annotation {

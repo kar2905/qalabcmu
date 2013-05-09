@@ -108,7 +108,7 @@ public class AnswerChoiceCandAnsPMIScorer extends JCasAnnotator_ImplBase {
 					System.out.println(choiceList.get(j).getText() + "\t"
 							+ score1 + "\t" + ((score1)));
 
-					CandidateAnswer candAnswer=new CandidateAnswer(aJCas);
+					CandidateAnswer candAnswer=Utils.fromFSListToCollection(candSent.getCandAnswerList(),CandidateAnswer.class).get(j);//new CandidateAnswer(aJCas);;
 					candAnswer.setText(answer.getText());
 					candAnswer.setQId(answer.getQuestionId());
 					candAnswer.setChoiceIndex(j);

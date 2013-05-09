@@ -69,6 +69,12 @@
 			<version>1.3.4</version>
 			<classifier>models</classifier>
 		</dependency>
+		<dependency>
+			<groupId>edu.cmu.lti.oaqa.core.provider</groupId>
+			<artifactId>solr-provider</artifactId>
+			<version>1.0.17</version>
+		</dependency>
+
 	</dependencies>
 	<!-- <scm> <connection>scm:git:git@github.com:alkeshpatel11/hw1-alkeshku.git</connection> 
 		<developerConnection>scm:git:git@github.com:alkeshpatel11/hw1-alkeshku.git</developerConnection> 
