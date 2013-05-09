@@ -32,7 +32,8 @@ public class AnswerExtractor extends JCasAnnotator_ImplBase {
 
 	private SolrWrapper solrWrapper;
 	HashSet<String> hshStopWords = new HashSet<String>();
-
+	int N_SEARCH_RESULTS=10;
+	
 	@Override
 	public void initialize(UimaContext context)
 			throws ResourceInitializationException {
@@ -63,15 +64,14 @@ public class AnswerExtractor extends JCasAnnotator_ImplBase {
 
 	@Override
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
-		// TODO Auto-generated method stub
-
+	
 		TestDocument testDoc = Utils.getTestDocumentFromCAS(aJCas);
 		ArrayList<QuestionAnswerSet> qaSet = Utils.fromFSListToCollection(
 				testDoc.getQaList(), QuestionAnswerSet.class);
 		int matched = 0;
 		int total = 0;
 		int unanswered = 0;
-
+		
 		for (int i = 0; i < qaSet.size(); i++) {
 
 			Question question = qaSet.get(i).getQuestion();
@@ -83,118 +83,60 @@ public class AnswerExtractor extends JCasAnnotator_ImplBase {
 							.getCandidateSentenceList(),
 							CandidateSentence.class);
 
-			HashMap<String, CandidateAnswer> hshAnswer = new HashMap<String, CandidateAnswer>();
-			int topK = Math.min(5, candSentList.size());
-			int selectedIdx = 0;
-			int correctIdx = 0;
+			int topK = Math.min(N_SEARCH_RESULTS, candSentList.size());
 			String correct = "";
+
+			for(int j=0;j<choiceList.size();j++){
+				Answer answer = choiceList.get(j);
+				if (answer.getIsCorrect()) {
+					correct = answer.getText();
+					break;
+				}
+			}
+			
+			HashMap<String, Double> hshAnswer = new HashMap<String, Double>();
+
 			for (int c = 0; c < topK; c++) {
 
 				CandidateSentence candSent = candSentList.get(c);
-
-				ArrayList<NounPhrase> candSentNouns = Utils
-						.fromFSListToCollection(candSent.getSentence()
-								.getPhraseList(), NounPhrase.class);
-				ArrayList<NER> candSentNers = Utils.fromFSListToCollection(
-						candSent.getSentence().getNerList(), NER.class);
-
-				double maxScore = Double.NEGATIVE_INFINITY;
-				String bestChoice = "";
-
-				for (int j = 0; j < choiceList.size(); j++) {
-					double score1 = 0.0;
-					double score2 = 0.0;
-					Answer answer = choiceList.get(j);
-					if (answer.getIsCorrect()) {
-						correct = answer.getText();
-						correctIdx = j;
-					}
-
-					for (int k = 0; k < candSentNouns.size(); k++) {
-						try {
-							score1 += scoreCoOccurInSameDoc(candSentNouns.get(k)
-									.getText(), choiceList.get(j));
-
-							//score2 += scoreCoOccurInSameWindow(candSentNouns
-								//	.get(k).getText(), choiceList.get(j), 10);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-
-					for (int k = 0; k < candSentNers.size(); k++) {
-
-						try {
-							score1 += scoreCoOccurInSameDoc(candSentNers.get(k)
-									.getText(), choiceList.get(j));
-							//score2 += scoreCoOccurInSameWindow(candSentNers
-								//	.get(k).getText(), choiceList.get(j), 10);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-
-					}
-
-					System.out.println(choiceList.get(j).getText() + "\t"
-							+ score1 + "\t" + score2+"\t"+((score1+score2)));
-					double totalScore = score1 + score2;
-					if (totalScore > maxScore) {
-						maxScore = totalScore;
-						bestChoice = choiceList.get(j).getText();
-						selectedIdx = j;
-					}
+				
+				ArrayList<CandidateAnswer>candAnswerList=Utils.fromFSListToCollection(candSent.getCandAnswerList(), CandidateAnswer.class);
+				
+				for (int j = 0; j < candAnswerList.size(); j++) {
+										
+					CandidateAnswer candAns = candAnswerList.get(j);
+					String answer=candAns.getText();
+					double totalScore=candAns.getSimilarityScore()+
+										candAns.getSynonymScore()+
+										candAns.getPMIScore();
 					
-					CandidateAnswer candAns = hshAnswer.get(choiceList.get(j).getText());
-					if (candAns == null) {
-						candAns = new CandidateAnswer(aJCas);
-						candAns.setQId(String.valueOf(i));
-						candAns.setText(choiceList.get(j).getText());
-						candAns.setScore(totalScore);
-						candAns.setChoiceIndex(j);
-					} else {
-						double newScore = candAns.getScore() +maxScore;
-						candAns.setScore(newScore);
-					}
-					hshAnswer.put(choiceList.get(j).getText(), candAns);
+					hshAnswer.put(answer, totalScore);
 				}
-
-				/*CandidateAnswer candAns = hshAnswer.get(bestChoice);
-				if (candAns == null) {
-					candAns = new CandidateAnswer(aJCas);
-					candAns.setQId(String.valueOf(i));
-					candAns.setText(bestChoice);
-					candAns.setScore(maxScore);
-					candAns.setChoiceIndex(selectedIdx);
-				} else {
-					double newScore = candAns.getScore() +maxScore;
-					candAns.setScore(newScore);
-				}
-				hshAnswer.put(bestChoice, candAns);*/
 			}
 
-			CandidateAnswer bestChoice = null;
+			String bestChoice = null;
 			try {
 				bestChoice = findBestChoice(hshAnswer);
-				selectedIdx=bestChoice.getChoiceIndex();
-				choiceList.get(bestChoice.getChoiceIndex()).setIsSelected(true);
-
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			System.out
-					.println("Correct Choice: " + correctIdx + "\t" + correct);
-			System.out.println("Best Choice: " + selectedIdx + "\t"
-					+ bestChoice.getText());
-			if (correctIdx == selectedIdx) {
+					.println("Correct Choice: " + "\t" + correct);
+			System.out.println("Best Choice: " + "\t"
+					+ bestChoice);
+			
+			if(bestChoice==null){
+				unanswered++;
+			}
+			if (bestChoice!=null && correct.equals(bestChoice)) {
 				matched++;
 
 			}
 			total++;
 			System.out
 					.println("================================================");
-			FSList fsChoiceList = Utils.fromCollectionToFSList(aJCas,
-					choiceList);
-			fsChoiceList.addToIndexes();
+			
 
 		}
 
@@ -207,26 +149,25 @@ public class AnswerExtractor extends JCasAnnotator_ImplBase {
 		System.out.println("c@1 score:" + cAt1);
 	}
 
-	public CandidateAnswer findBestChoice(
-			HashMap<String, CandidateAnswer> hshAnswer) throws Exception {
+	public String findBestChoice(
+			HashMap<String, Double> hshAnswer) throws Exception {
 
 		Iterator<String> it = hshAnswer.keySet().iterator();
-		CandidateAnswer candAns = null;
-		double maxCount = 0;
+		String bestAns = null;
+		double maxScore = 0;
 		System.out.println("Aggregated counts; ");
 		while (it.hasNext()) {
 			String key = it.next();
-			CandidateAnswer val = hshAnswer.get(key);
-			double score = val.getScore();
-			System.out.println(key+"\t"+val.getText()+"\t"+score);
-			if (score > maxCount) {
-				maxCount = score;
-				candAns = val;
+			Double val = hshAnswer.get(key);
+			System.out.println(key+"\t"+key+"\t"+val);
+			if (val > maxScore) {
+				maxScore = val;
+				bestAns = key;
 			}
 
 		}
 
-		return candAns;
+		return bestAns;
 	}
 
 	public double scoreCoOccurInSameDoc(String question, Answer choice)

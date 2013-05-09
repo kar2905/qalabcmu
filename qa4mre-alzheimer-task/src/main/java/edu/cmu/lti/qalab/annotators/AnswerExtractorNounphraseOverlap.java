@@ -155,11 +155,11 @@ public class AnswerExtractorNounphraseOverlap extends JCasAnnotator_ImplBase {
 						candAns = new CandidateAnswer(aJCas);
 						candAns.setQId(String.valueOf(i));
 						candAns.setText(choiceList.get(j).getText());
-						candAns.setScore(nnMatch);
+						candAns.setPMIScore(nnMatch);
 						candAns.setChoiceIndex(j);
 					} else {
-						double newScore = candAns.getScore() + nnMatch;
-						candAns.setScore(newScore);
+						double newScore = candAns.getPMIScore() + nnMatch;
+						candAns.setPMIScore(newScore);
 					}
 					hshAnswer.put(choiceList.get(j).getText(), candAns);
 				}
@@ -220,7 +220,7 @@ public class AnswerExtractorNounphraseOverlap extends JCasAnnotator_ImplBase {
 		while (it.hasNext()) {
 			String key = it.next();
 			CandidateAnswer val = hshAnswer.get(key);
-			double score = val.getScore();
+			double score = val.getPMIScore();
 			if (score > maxCount) {
 				maxCount = score;
 				candAns = val;

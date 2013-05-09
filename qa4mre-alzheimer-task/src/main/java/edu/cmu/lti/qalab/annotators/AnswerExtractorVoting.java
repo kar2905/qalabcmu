@@ -163,11 +163,11 @@ public class AnswerExtractorVoting extends JCasAnnotator_ImplBase {
 					candAns = new CandidateAnswer(aJCas);
 					candAns.setQId(String.valueOf(i));
 					candAns.setText(bestChoice);
-					candAns.setScore(1.0);
+					candAns.setPMIScore(1.0);
 					candAns.setChoiceIndex(selectedIdx);
 				} else {
-					double newScore = candAns.getScore() +1.0;
-					candAns.setScore(newScore);
+					double newScore = candAns.getPMIScore() +1.0;
+					candAns.setPMIScore(newScore);
 				}
 				hshAnswer.put(bestChoice, candAns);
 			}
@@ -217,7 +217,7 @@ public class AnswerExtractorVoting extends JCasAnnotator_ImplBase {
 		while (it.hasNext()) {
 			String key = it.next();
 			CandidateAnswer val = hshAnswer.get(key);
-			double score = val.getScore();
+			double score = val.getPMIScore();
 			System.out.println(key+"\t"+val.getText()+"\t"+score);
 			if (score > maxCount) {
 				maxCount = score;
