@@ -2,43 +2,32 @@
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>true</primitive>
-  <annotatorImplementationName>edu.cmu.lti.qalab.candidate_sentence.QuestionCandSentDependencyMatcher</annotatorImplementationName>
+  <annotatorImplementationName>edu.cmu.lti.qalab.answer_selection.AnswerSelectionByKCandAggregation</annotatorImplementationName>
   <analysisEngineMetaData>
-    <name>QuestionCandSentDependencyMatcherDescriptor</name>
+    <name>AnswerSelectionByKCandAggregationDescriptior</name>
     <description/>
     <version>1.0</version>
     <vendor/>
-    <configurationParameters>
+    <!-- <configurationParameters>
       <configurationParameter>
-        <name>DISCO_PATH</name>
+        <name>NOISE_THRESHOLD</name>
         <description>noise score</description>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>
-      <configurationParameter>
-        <name>DEPTREE_PATH</name>
-        <description>noise score</description>
-        <type>String</type>
-        <multiValued>false</multiValued>
-        <mandatory>false</mandatory>
-      </configurationParameter>      
+      
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
-        <name>DISCO_PATH</name>
+        <name>NOISE_THRESHOLD</name>
         <value>
-          <string>data/en-PubMedOA-20070501.tar</string>
-        </value>
-      </nameValuePair>
-       <nameValuePair>
-        <name>DEPTREE_PATH</name>
-        <value>
-          <string>data/dpTree.xml</string>
+          <string>0.20</string>
         </value>
       </nameValuePair>     
     </configurationParameterSettings>
-        
+     -->
+    
     <typeSystemDescription/>
     <typePriorities/>
     <fsIndexCollection/>
