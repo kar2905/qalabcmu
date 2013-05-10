@@ -514,7 +514,7 @@ public class Utils {
 			int start = matcher.start();
 			int end = matcher.end();
 			Brackets brackets = new Brackets(matched, start, end);
-			System.out.println("******Bracket\t"+matched+"\t"+start+"\t"+end);
+			//System.out.println("******Bracket\t"+matched+"\t"+start+"\t"+end);
 			bracketList.add(brackets);
 		}
 

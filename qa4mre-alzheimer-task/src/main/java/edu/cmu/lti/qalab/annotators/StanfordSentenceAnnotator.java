@@ -43,15 +43,15 @@ public class StanfordSentenceAnnotator extends JCasAnnotator_ImplBase{
 
 		String id = testDoc.getId();
 		String docText = testDoc.getText();
-		System.out.println("===============================================");
+		//System.out.println("===============================================");
 		//System.out.println("DocText: " + docText);
 		String segments[] = docText.split("[\\n]");
-		FSList allFSSentList=new FSList(jCas);
+		//FSList allFSSentList=new FSList(jCas);
 		ArrayList<Sentence> sentList = new ArrayList<Sentence>();
 		for (int i = 0; i < segments.length; i++) {
 			String segmentText=segments[i];
-			System.out.println(i+"\t"+segmentText);
-			System.out.println("=========================================================");
+			//System.out.println(i+"\t"+segmentText);
+			//System.out.println("=========================================================");
 			
 			Annotation document = new Annotation(segmentText);
 			
@@ -78,8 +78,8 @@ public class StanfordSentenceAnnotator extends JCasAnnotator_ImplBase{
 			
 			
 			String candSent="";
-			int start=0;
-			int end=0;
+			//int start=0;
+			//int end=0;
 			for (CoreMap sentence : sentences) {
 
 				String sentText = sentence.toString();
@@ -98,7 +98,7 @@ public class StanfordSentenceAnnotator extends JCasAnnotator_ImplBase{
 					continue;
 				}
 				sentText=candSent.trim();
-				System.out.println(sentText);
+				//System.out.println(sentText);
 				annSentence.setId(String.valueOf(sentNo));
 				annSentence.setBegin(sentStartPos);// begin of
 																	// first
@@ -116,7 +116,7 @@ public class StanfordSentenceAnnotator extends JCasAnnotator_ImplBase{
 				candSent="";
 				//System.out.println("Sentence no. " + sentNo + " processed");
 			}
-			System.out.println("=========================================================");
+			//System.out.println("=========================================================");
 			
 
 			// this.iterateFSList(fsSentList);

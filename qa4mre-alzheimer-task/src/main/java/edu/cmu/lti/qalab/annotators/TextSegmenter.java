@@ -35,10 +35,10 @@ public class TextSegmenter extends JCasAnnotator_ImplBase {
 
 			ArrayList<Integer> posList = new ArrayList<Integer>();
 			while (matcher.find()) {
-				String matched = matcher.group();
+				//String matched = matcher.group();
 				int start = matcher.start();
 				int end = matcher.end();
-				System.out.println("matched: "+matched+"\t"+start+"\t"+end);
+				//System.out.println("matched: "+matched+"\t"+start+"\t"+end);
 				boolean isSegment = true;
 				if (Character.isDigit(docText.charAt(start))) {
 					if((start-1)>=0 && Character.isDigit(docText.charAt(start-1))){
@@ -63,7 +63,7 @@ public class TextSegmenter extends JCasAnnotator_ImplBase {
 				}
 				
 				boolean isInsideBkrt=Utils.isInsideBracket(brackatedExpression,start+1);
-				System.out.println("isInsideBracket: "+isInsideBkrt+"\t"+"isSegment: "+isSegment);
+				//System.out.println("isInsideBracket: "+isInsideBkrt+"\t"+"isSegment: "+isSegment);
 				if(isInsideBkrt){
 					isSegment=false;
 				}

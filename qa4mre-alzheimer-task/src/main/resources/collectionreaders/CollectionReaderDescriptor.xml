@@ -19,7 +19,7 @@
       <nameValuePair>
         <name>INPUT_DIR</name>
         <value>
-          <string>data/</string>
+          <string>data/13-sample/</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

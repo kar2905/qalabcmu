@@ -124,8 +124,8 @@ public class SynonymAnnotator extends JCasAnnotator_ImplBase {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(GIGA_WORD));
 			while ((thisLine = br.readLine()) != null) {
-				String str = thisLine.replaceAll("(\\r|\\n)", "");
-				String[] wordNumber = str.split(" ");
+				String str = thisLine.trim();//replaceAll("(\\r|\\n)", "");
+				String[] wordNumber = str.split("[ ]{2,}");
 				String word = wordNumber[0].toLowerCase();
 				int cnt = Integer.parseInt(wordNumber[1]);
 				gigaMap.put(word, cnt);
@@ -133,7 +133,7 @@ public class SynonymAnnotator extends JCasAnnotator_ImplBase {
 
 			br = new BufferedReader(new FileReader(FILE_NAME));
 			while ((thisLine = br.readLine()) != null) {
-				String str = thisLine.replaceAll("(\\r|\\n)", "");
+				String str = thisLine.trim();//replaceAll("(\\r|\\n)", "");
 				if (str.equals("[Term]")) {
 					next = true;
 				}
