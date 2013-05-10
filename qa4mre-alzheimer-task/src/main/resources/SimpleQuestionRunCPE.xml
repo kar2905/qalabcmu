@@ -3,24 +3,24 @@
   <primitive>false</primitive>
   <delegateAnalysisEngineSpecifiers>
     
-    <delegateAnalysisEngine key="StanfordQuestionNLPAnnotator">
+    <!-- <delegateAnalysisEngine key="StanfordQuestionNLPAnnotator">
       <import location="annotators/StanfordQuestionNLPAnnotator.xml"/>
     </delegateAnalysisEngine> 
     
     <delegateAnalysisEngine key="QuestionPhraseAnnotator">
       <import location="annotators/QuestionPhraseAnnotator.xml"/>
     </delegateAnalysisEngine>
-       
-    <delegateAnalysisEngine key="QuestionNEAnnotator">
-      <import location="annotators/QuestionNEAnnotator.xml"/>
+       -->
+    <delegateAnalysisEngine key="QuestionCandSentSimilarityMatcher">
+      <import location="annotators/QuestionCandSentSimilarityMatcher.xml"/>
     </delegateAnalysisEngine>
     
-    <delegateAnalysisEngine key="SearchCandidates">
-      <import location="annotators/SearchCandidates.xml"/>
-    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="AnswerChoiceCandAnsSimilarityScorer">
+      <import location="annotators/AnswerChoiceCandAnsSimilarityScorer.xml"/>
+    </delegateAnalysisEngine>-->
     
-    <delegateAnalysisEngine key="AnswerExtractor">
-      <import location="annotators/AnswerExtractor.xml"/>
+    <delegateAnalysisEngine key="AnswerSelectionByKCandVoting">
+      <import location="annotators/AnswerSelectionByKCandVoting.xml"/>
     </delegateAnalysisEngine>
        
   </delegateAnalysisEngineSpecifiers>
@@ -32,12 +32,10 @@
     <configurationParameters searchStrategy="language_fallback"/>
     <configurationParameterSettings/>
     <flowConstraints>
-      <fixedFlow>
-        <node>StanfordQuestionNLPAnnotator</node>
-        <node>QuestionPhraseAnnotator</node>
-        <node>QuestionNEAnnotator</node>
-        <node>SearchCandidates</node>
-        <node>AnswerExtractor</node>       
+      <fixedFlow>       
+        <node>QuestionCandSentSimilarityMatcher</node>
+        <node>AnswerChoiceCandAnsSimilarityScorer</node>
+        <node>AnswerSelectionByKCandVoting</node>       
       </fixedFlow>
     </flowConstraints>
     <typePriorities/>

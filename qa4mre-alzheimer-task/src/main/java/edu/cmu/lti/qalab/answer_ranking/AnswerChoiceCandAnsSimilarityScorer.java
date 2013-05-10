@@ -102,8 +102,16 @@ public class AnswerChoiceCandAnsSimilarityScorer extends JCasAnnotator_ImplBase 
 
 					System.out.println(choiceList.get(j).getText() + "\t"
 							+ nnMatch);
+					CandidateAnswer candAnswer = null;
+					if (candSent.getCandAnswerList() == null) {
+						candAnswer = new CandidateAnswer(aJCas);
+					} else {
+						candAnswer = Utils.fromFSListToCollection(
+								candSent.getCandAnswerList(),
+								CandidateAnswer.class).get(j);// new
+																// CandidateAnswer(aJCas);;
 
-					CandidateAnswer candAnswer = Utils.fromFSListToCollection(candSent.getCandAnswerList(),CandidateAnswer.class).get(j);//new CandidateAnswer(aJCas);;
+					}
 					candAnswer.setText(answer.getText());
 					candAnswer.setQId(answer.getQuestionId());
 					candAnswer.setChoiceIndex(j);

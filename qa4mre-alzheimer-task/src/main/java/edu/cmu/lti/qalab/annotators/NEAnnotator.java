@@ -10,11 +10,8 @@ import org.apache.uima.jcas.cas.FSList;
 import org.apache.uima.resource.ResourceInitializationException;
 
 import abner.Tagger;
-
 import edu.cmu.lti.qalab.types.NER;
-import edu.cmu.lti.qalab.types.Question;
 import edu.cmu.lti.qalab.types.Sentence;
-import edu.cmu.lti.qalab.types.TestDocument;
 import edu.cmu.lti.qalab.utils.Utils;
 
 public class NEAnnotator extends JCasAnnotator_ImplBase{
@@ -76,7 +73,7 @@ public class NEAnnotator extends JCasAnnotator_ImplBase{
 						ne.setText(ner);
 						ne.setTag(type);
 						nerList.add(ne);
-						System.out.println(ner + "\t" + type);
+						//System.out.println(ner + "\t" + type);
 					}
 
 					ner = "";
@@ -93,7 +90,7 @@ public class NEAnnotator extends JCasAnnotator_ImplBase{
 			ne.setText(ner);
 			ne.setTag(type);
 			nerList.add(ne);
-			System.out.println(ner + "\t" + type);
+			//System.out.println(ner + "\t" + type);
 		}
 		return nerList;
 	}

@@ -39,7 +39,7 @@ public class QuestionCandSentSimilarityMatcher  extends JCasAnnotator_ImplBase{
 		serverUrl = (String) context.getConfigParameterValue("SOLR_SERVER_URL");
 		coreName = (String) context.getConfigParameterValue("SOLR_CORE");
 		schemaName = (String) context.getConfigParameterValue("SCHEMA_NAME");
-
+		TOP_SEARCH_RESULTS = Integer.parseInt((String) context.getConfigParameterValue("TOP_SEARCH_RESULTS"));
 		try {
 			this.solrWrapper = new SolrWrapper(serverUrl+coreName);
 		} catch (Exception e) {
@@ -65,7 +65,7 @@ public class QuestionCandSentSimilarityMatcher  extends JCasAnnotator_ImplBase{
 			String searchQuery=this.formSolrQuery(question);
 			ArrayList<CandidateSentence>candidateSentList=new ArrayList<CandidateSentence>();
 			SolrQuery solrQuery=new SolrQuery();
-			solrQuery.add("fq", testDocId);
+			solrQuery.add("fq", "docid:"+testDocId);
 			solrQuery.add("q",searchQuery);
 			solrQuery.add("rows",String.valueOf(TOP_SEARCH_RESULTS));
 			solrQuery.setFields("*", "score");
@@ -75,7 +75,7 @@ public class QuestionCandSentSimilarityMatcher  extends JCasAnnotator_ImplBase{
 					SolrDocument doc=results.get(j);					
 					String sentId=doc.get("id").toString();
 					String docId=doc.get("docid").toString();
-					if(testDocId.equals(docId)){
+					if(!testDocId.equals(docId)){
 						continue;
 					}
 					String sentIdx=sentId.replace(docId,"").replace("_", "").trim();

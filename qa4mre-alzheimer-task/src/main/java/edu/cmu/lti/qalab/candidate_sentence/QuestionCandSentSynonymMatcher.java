@@ -78,7 +78,7 @@ public class QuestionCandSentSynonymMatcher extends JCasAnnotator_ImplBase {
 					SolrDocument doc = results.get(j);
 					String sentId = doc.get("id").toString();
 					String docId = doc.get("docid").toString();
-					if (testDocId.equals(docId)) {
+					if (!testDocId.equals(docId)) {
 						continue;
 					}
 					String sentIdx = sentId.replace(docId, "").replace("_", "")
