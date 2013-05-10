@@ -5,22 +5,29 @@
     
     <!-- <delegateAnalysisEngine key="StanfordQuestionNLPAnnotator">
       <import location="annotators/StanfordQuestionNLPAnnotator.xml"/>
-    </delegateAnalysisEngine> 
+    </delegateAnalysisEngine>--> 
     
-    <delegateAnalysisEngine key="QuestionPhraseAnnotator">
-      <import location="annotators/QuestionPhraseAnnotator.xml"/>
+    <delegateAnalysisEngine key="QuestionCandSentDependencyMatcher">
+      <import location="annotators/QuestionCandSentDependencyMatcher.xml"/>
     </delegateAnalysisEngine>
-       -->
+    
     <delegateAnalysisEngine key="QuestionCandSentSimilarityMatcher">
       <import location="annotators/QuestionCandSentSimilarityMatcher.xml"/>
     </delegateAnalysisEngine>
     
+    <delegateAnalysisEngine key="QuestionCandSentSynonymMatcher">
+      <import location="annotators/QuestionCandSentSynonymMatcher.xml"/>
+    </delegateAnalysisEngine>
+    
     <delegateAnalysisEngine key="AnswerChoiceCandAnsSimilarityScorer">
       <import location="annotators/AnswerChoiceCandAnsSimilarityScorer.xml"/>
-    </delegateAnalysisEngine>-->
+    </delegateAnalysisEngine>
     
     <delegateAnalysisEngine key="AnswerSelectionByKCandVoting">
       <import location="annotators/AnswerSelectionByKCandVoting.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="AnswerSelectionByKCandAggregation">
+      <import location="annotators/AnswerSelectionByKCandAggregation.xml"/>
     </delegateAnalysisEngine>
        
   </delegateAnalysisEngineSpecifiers>
@@ -33,9 +40,14 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>       
-        <node>QuestionCandSentSimilarityMatcher</node>
+        <node>QuestionCandSentSynonymMatcher</node>
+        <!-- <node>QuestionCandSentSimilarityMatcher</node>-->
+        <!-- <node>QuestionCandSentDependencyMatcher</node>-->
         <node>AnswerChoiceCandAnsSimilarityScorer</node>
+        <!--<node>AnswerChoiceCandAnsSynonymScorer</node>-->
+        <!--<node>AnswerChoiceCandAnsPMIScorer</node>-->
         <node>AnswerSelectionByKCandVoting</node>       
+        <!--<node>AnswerSelectionByKCandVoting</node>-->
       </fixedFlow>
     </flowConstraints>
     <typePriorities/>

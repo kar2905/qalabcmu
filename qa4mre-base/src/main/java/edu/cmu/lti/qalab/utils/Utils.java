@@ -98,6 +98,7 @@ public class Utils {
 	public static <T extends TOP> ArrayList<T> fromFSListToCollection(FSList list,
 			Class<T> classType) {
 
+	
 		Collection<T> myCollection = JCasUtil.select(list, classType);
 		/*
 		 * for(T element:myCollection){ System.out.println(.getText()); }
