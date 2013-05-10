@@ -7,23 +7,6 @@
     <description/>
     <version>1.0</version>
     <vendor/>
-    <configurationParameters>
-      <configurationParameter>
-        <name>NOISE_THRESHOLD</name>
-        <description>noise score</description>
-        <type>String</type>
-        <multiValued>false</multiValued>
-        <mandatory>false</mandatory>
-      </configurationParameter>
-    </configurationParameters>
-    <configurationParameterSettings>
-      <nameValuePair>
-        <name>NOISE_THRESHOLD</name>
-        <value>
-          <string>0.20</string>
-        </value>
-      </nameValuePair>
-    </configurationParameterSettings>
     <typeSystemDescription/>
     <typePriorities/>
     <fsIndexCollection/>

@@ -10,22 +10,46 @@
     <vendor/>
     <configurationParameters>
       <configurationParameter>
-        <name>NOISE_THRESHOLD</name>
-        <description>noise score</description>
+        <name>QUALITY_THRESHOLD</name>
+        <description>quality score threshold</description>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
-      </configurationParameter>
-      
+      </configurationParameter>      
+      <configurationParameter>
+        <name>MIN_WORDS</name>
+        <description>minimum words to consider</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>      
+      <configurationParameter>
+        <name>MIN_LENGTH</name>
+        <description>minimum sentence length to consider</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>          
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
-        <name>NOISE_THRESHOLD</name>
+        <name>QUALITY_THRESHOLD</name>
         <value>
-          <string>0.20</string>
+          <string>0.75</string>
         </value>
       </nameValuePair>
-      
+      <nameValuePair>
+        <name>MIN_WORDS</name>
+        <value>
+          <string>5</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>MIN_LENGTH</name>
+        <value>
+          <string>25</string>
+        </value>
+      </nameValuePair>
     </configurationParameterSettings>
     <typeSystemDescription/>
     <typePriorities/>

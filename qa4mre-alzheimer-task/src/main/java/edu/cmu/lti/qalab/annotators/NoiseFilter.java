@@ -5,14 +5,14 @@ import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
-import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.FSList;
+import org.apache.uima.resource.ResourceInitializationException;
 
 import edu.cmu.lti.qalab.types.Sentence;
-import edu.cmu.lti.qalab.types.SourceDocument;
 import edu.cmu.lti.qalab.types.TestDocument;
 import edu.cmu.lti.qalab.utils.Utils;
 import edu.stanford.nlp.util.StringUtils;
@@ -24,6 +24,16 @@ public class NoiseFilter extends JCasAnnotator_ImplBase {
 	int MIN_LENGTH=25;
 	Pattern authorPattern=Pattern.compile("[A-Z][a-z]+[ ]+[A-Z]{1,3}[, ]");
 	Pattern yearPattern=Pattern.compile("[(][0-9]{4}[)]");
+	
+	@Override
+	public void initialize(UimaContext context)
+			throws ResourceInitializationException {
+		super.initialize(context);
+		
+		QUALITY_THRESHOLD=Double.parseDouble((String)context.getConfigParameterValue("QUALITY_THRESHOLD"));
+		MIN_WORDS=Integer.parseInt((String)context.getConfigParameterValue("MIN_WORDS"));
+		MIN_LENGTH=Integer.parseInt((String)context.getConfigParameterValue("MIN_LENGTH"));
+	}
 	
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
@@ -54,7 +64,7 @@ public class NoiseFilter extends JCasAnnotator_ImplBase {
 				}
 				
 				double qualityScore = this.getSentQuality(sentText);
-				System.out.println("****Quality Score: "+qualityScore+"\t"+sentText);
+				//System.out.println("****Quality Score: "+qualityScore+"\t"+sentText);
 				
 				if(qualityScore<QUALITY_THRESHOLD){
 					//sentence.removeFromIndexes();
@@ -69,7 +79,7 @@ public class NoiseFilter extends JCasAnnotator_ImplBase {
 				
 			}
 						
-			System.out.println("Difference between size of (SourceDocument - FilteredDocument): "+(docText.length()-filteredText.length()));
+			//System.out.println("Difference between size of (SourceDocument - FilteredDocument): "+(docText.length()-filteredText.length()));
 		
 			FSList modifiedSentList=Utils.createSentenceList(jCas, sentenceList);
 			//annotation.setId(id);
