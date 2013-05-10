@@ -2,10 +2,10 @@
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
 	<frameworkImplementation>org.apache.uima.java</frameworkImplementation>
 	<primitive>true</primitive>
-	<annotatorImplementationName>edu.cmu.lti.qalab.annotators.AnswerExtractor
+	<annotatorImplementationName>edu.cmu.lti.qalab.indexers.SolrIndexer
 	</annotatorImplementationName>
 	<analysisEngineMetaData>
-		<name>AnswerExtractorDescriptor</name>
+		<name>SolrIndexer</name>
 		<description />
 		<version>1.0</version>
 		<vendor />

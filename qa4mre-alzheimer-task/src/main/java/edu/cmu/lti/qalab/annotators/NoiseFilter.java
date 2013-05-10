@@ -30,9 +30,9 @@ public class NoiseFilter extends JCasAnnotator_ImplBase {
 			throws ResourceInitializationException {
 		super.initialize(context);
 		
-		QUALITY_THRESHOLD=Double.parseDouble((String)context.getConfigParameterValue("QUALITY_THRESHOLD"));
-		MIN_WORDS=Integer.parseInt((String)context.getConfigParameterValue("MIN_WORDS"));
-		MIN_LENGTH=Integer.parseInt((String)context.getConfigParameterValue("MIN_LENGTH"));
+		QUALITY_THRESHOLD=(Float)context.getConfigParameterValue("QUALITY_THRESHOLD");
+		MIN_WORDS=(Integer)context.getConfigParameterValue("MIN_WORDS");
+		MIN_LENGTH=(Integer)context.getConfigParameterValue("MIN_LENGTH");
 	}
 	
 	@Override

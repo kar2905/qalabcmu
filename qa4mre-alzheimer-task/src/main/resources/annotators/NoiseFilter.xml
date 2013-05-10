@@ -12,21 +12,21 @@
       <configurationParameter>
         <name>QUALITY_THRESHOLD</name>
         <description>quality score threshold</description>
-        <type>String</type>
+        <type>Float</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>      
       <configurationParameter>
         <name>MIN_WORDS</name>
         <description>minimum words to consider</description>
-        <type>String</type>
+        <type>Integer</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>      
       <configurationParameter>
         <name>MIN_LENGTH</name>
         <description>minimum sentence length to consider</description>
-        <type>String</type>
+        <type>Integer</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>          

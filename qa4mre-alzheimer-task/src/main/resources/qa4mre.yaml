@@ -31,25 +31,14 @@ pipeline:
       - inherit: annotators.StanfordNLPAnnotator
 
   - inherit: ecd.phase
-    name: PhraseAnnotator
-    options: |
-      - inherit: annotators.PhraseAnnotator
-
-  - inherit: ecd.phase
-    name: NEAnnotator
-    options: |
-      - inherit: annotators.NEAnnotator
-
-  - inherit: ecd.phase
-    name: CasConsumer
-    options: |
-      - inherit: consumers.CasConsumerDescriptor
-
-  # answer ranking: XMIs -> result
-  - inherit: ecd.phase
     name: StanfordQuestionNLPAnnotator
     options: |
       - inherit: annotators.StanfordQuestionNLPAnnotator
+
+  - inherit: ecd.phase
+    name: PhraseAnnotator
+    options: |
+      - inherit: annotators.PhraseAnnotator
 
   - inherit: ecd.phase
     name: QuestionPhraseAnnotator
@@ -57,24 +46,50 @@ pipeline:
       - inherit: annotators.QuestionPhraseAnnotator
 
   - inherit: ecd.phase
+    name: NEAnnotator
+    options: |
+      - inherit: annotators.NEAnnotator
+
+  - inherit: ecd.phase
     name: QuestionNEAnnotator
     options: |
       - inherit: annotators.QuestionNEAnnotator
 
   - inherit: ecd.phase
-    name: SearchCandidates
+    name: SynonymAnnotator
     options: |
-      - inherit: annotators.SearchCandidates
+      - inherit: annotators.SynonymAnnotator
 
   - inherit: ecd.phase
-    name: AnswerExtractor
+    name: QASynonymAnnotator
     options: |
-      - inherit: annotators.AnswerExtractor
+      - inherit: annotators.QASynonymAnnotator
 
   - inherit: ecd.phase
-    name: CasConsumerResult
+    name: CasConsumer
     options: |
-      - inherit: consumers.CasConsumerResultDescriptor
+      - inherit: consumers.CasConsumerDescriptor
 
-    
-    
+  # indexing
+  
+  - inherit: ecd.phase
+    name: SolrIndexer
+    options: |
+      - inherit: annotators.SolrIndexer
+  
+  # answer ranking and merging: XMIs -> results
+
+  - inherit: ecd.phase
+    name: QuestionCandSentSimilarityMatcher
+    options: |
+      - inherit: annotators.QuestionCandSentSimilarityMatcher
+
+  - inherit: ecd.phase
+    name: AnswerChoiceCandAnsSimilarityScorer
+    options: |
+      - inherit: annotators.AnswerChoiceCandAnsSimilarityScorer
+
+  - inherit: ecd.phase
+    name: AnswerChoiceCandAnsSimilarityScorer
+    options: |
+      - inherit: annotators.AnswerSelectionByKCandVoting

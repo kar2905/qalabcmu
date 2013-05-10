@@ -39,7 +39,7 @@ public class QuestionCandSentSimilarityMatcher  extends JCasAnnotator_ImplBase{
 		serverUrl = (String) context.getConfigParameterValue("SOLR_SERVER_URL");
 		coreName = (String) context.getConfigParameterValue("SOLR_CORE");
 		schemaName = (String) context.getConfigParameterValue("SCHEMA_NAME");
-		TOP_SEARCH_RESULTS = Integer.parseInt((String) context.getConfigParameterValue("TOP_SEARCH_RESULTS"));
+		TOP_SEARCH_RESULTS = (Integer) context.getConfigParameterValue("TOP_SEARCH_RESULTS");
 		try {
 			this.solrWrapper = new SolrWrapper(serverUrl+coreName);
 		} catch (Exception e) {

@@ -12,7 +12,7 @@
       <configurationParameter>
         <name>K_CANDIDATES</name>
         <description>K candidates</description>
-        <type>String</type>
+        <type>Integer</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>
