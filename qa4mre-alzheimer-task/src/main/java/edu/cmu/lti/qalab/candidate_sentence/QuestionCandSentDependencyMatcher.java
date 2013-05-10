@@ -33,8 +33,9 @@ public class QuestionCandSentDependencyMatcher extends JCasAnnotator_ImplBase {
 		String depTreePath = (String) context
 				.getConfigParameterValue("DEPTREE_PATH");
 		try {
-			disco = new DISCO(path, false);
-			tree = new DepTreeInfo(depTreePath);
+			//tree = new DepTreeInfo(depTreePath);
+			//disco = new DISCO(path, false);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -64,7 +65,8 @@ public class QuestionCandSentDependencyMatcher extends JCasAnnotator_ImplBase {
 						Dependency.class);
 				double depMatchScore = 0.0;
 				try {
-					depMatchScore = this.getScore(qDepList, cDepList);
+					depMatchScore=this.compareDependencies(qDepList, cDepList);
+					//depMatchScore = this.getScore(qDepList, cDepList);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -214,5 +216,28 @@ public class QuestionCandSentDependencyMatcher extends JCasAnnotator_ImplBase {
 		// System.out.println(score1+" "+score2);
 		return score1 * score2;
 	}
+	
+	public int compareDependencies(ArrayList<Dependency> qDep,
+			ArrayList<Dependency> candDep) throws Exception {
+		int cmpCnt = 0;
+		for (int i = 0; i < qDep.size(); i++) {
+			String qRelation=qDep.get(i).getRelation();
+			String qDependent=qDep.get(i).getDependent().getText();
+			String qGovernor=qDep.get(i).getGovernor().getText();
+			
+			for (int j = 0; j < candDep.size(); j++) {
+				String cRelation=candDep.get(j).getRelation();
+				String cDependent=candDep.get(i).getDependent().getText();
+				String cGovernor=candDep.get(i).getGovernor().getText();
+				
+				if (qRelation.equals(cRelation) && qDependent.equals(cDependent) && qGovernor.equals(cGovernor)) {
+					cmpCnt++;
+				}
+			}
+		}
+
+		return cmpCnt;
+	}
+
 
 }

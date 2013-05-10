@@ -28,8 +28,8 @@ import edu.cmu.lti.qalab.utils.Utils;
 
 public class QASynonymAnnotator extends JCasAnnotator_ImplBase {
 
-	public static final String FILE_NAME = "lib/gene_ontology_ext.obo";
-	public static final String GIGA_WORD = "lib/cmudict.0.7a.gigaword.freq";
+	public static String FILE_NAME = "data/gene_ontology_ext.obo";
+	public static String GIGA_WORD = "data/cmudict.0.7a.gigaword.freq";
 	private static HashMap<String, LinkedList<String>> dict = new HashMap<String, LinkedList<String>>();
 	private static HashMap<String, Integer> gigaMap = new HashMap<String, Integer>();
 	public static final int gigaThreshold = 400; // we treat words that have
@@ -40,6 +40,9 @@ public class QASynonymAnnotator extends JCasAnnotator_ImplBase {
 	public void initialize(UimaContext context)
 			throws ResourceInitializationException {
 		super.initialize(context);
+		super.initialize(context);
+		FILE_NAME=(String)context.getConfigParameterValue("FILE_NAME");
+		GIGA_WORD=(String)context.getConfigParameterValue("GIGA_WORD");
 		try{
 			startup();
 		}catch(Exception e){
@@ -193,16 +196,17 @@ public class QASynonymAnnotator extends JCasAnnotator_ImplBase {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(GIGA_WORD));
 			while ((thisLine = br.readLine()) != null) {
-				String str = thisLine.replaceAll("(\\r|\\n)", "");
-				String[] wordNumber = str.split(" ");
+				String str = thisLine.trim();//.replaceAll("(\\r|\\n)", "");
+				String[] wordNumber = str.split("[ ]{2,}");
 				String word = wordNumber[0].toLowerCase();
 				int cnt = Integer.parseInt(wordNumber[1]);
 				gigaMap.put(word, cnt);
 			}
-
+			br.close();
+			br=null;
 			br = new BufferedReader(new FileReader(FILE_NAME));
 			while ((thisLine = br.readLine()) != null) {
-				String str = thisLine.replaceAll("(\\r|\\n)", "");
+				String str = thisLine.trim();//replaceAll("(\\r|\\n)", "");
 				if (str.equals("[Term]")) {
 					next = true;
 				}
@@ -234,7 +238,7 @@ public class QASynonymAnnotator extends JCasAnnotator_ImplBase {
 				}
 			}
 			br.close();
-
+			br=null;
 		} catch (IOException e) {
 			System.err.println("Error: " + e);
 		}

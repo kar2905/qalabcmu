@@ -24,8 +24,8 @@ import edu.cmu.lti.qalab.utils.Utils;
 
 public class SynonymAnnotator extends JCasAnnotator_ImplBase {
 
-	public static String FILE_NAME = "lib/gene_ontology_ext.obo";
-	public static String GIGA_WORD = "lib/cmudict.0.7a.gigaword.freq";
+	public static String FILE_NAME = "data/gene_ontology_ext.obo";
+	public static String GIGA_WORD = "data/cmudict.0.7a.gigaword.freq";
 	private static HashMap<String, LinkedList<String>> dict = new HashMap<String, LinkedList<String>>();
 	private static HashMap<String, Integer> gigaMap = new HashMap<String, Integer>();
 	public static final int gigaThreshold = 400; // we treat words that have

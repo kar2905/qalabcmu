@@ -27,6 +27,7 @@ public class AnswerChoiceCandAnsSimilarityScorer extends JCasAnnotator_ImplBase 
 	public void initialize(UimaContext context)
 			throws ResourceInitializationException {
 		super.initialize(context);
+		K_CANDIDATES=Integer.parseInt((String)context.getConfigParameterValue("K_CANDIDATES"));
 	}
 
 	@Override

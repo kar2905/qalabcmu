@@ -11,14 +11,14 @@
     <configurationParameters>
       <configurationParameter>
         <name>DISCO_PATH</name>
-        <description>noise score</description>
+        <description>trained data for dependency tree matching</description>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>
       <configurationParameter>
         <name>DEPTREE_PATH</name>
-        <description>noise score</description>
+        <description>dependency tree template</description>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
@@ -28,13 +28,13 @@
       <nameValuePair>
         <name>DISCO_PATH</name>
         <value>
-          <string>data/en-PubMedOA-20070501.tar</string>
+          <string>data/disco-tool</string>
         </value>
       </nameValuePair>
        <nameValuePair>
         <name>DEPTREE_PATH</name>
         <value>
-          <string>data/dpTree.xml</string>
+          <string>data/disco-tool/dpTree.xml</string>
         </value>
       </nameValuePair>     
     </configurationParameterSettings>

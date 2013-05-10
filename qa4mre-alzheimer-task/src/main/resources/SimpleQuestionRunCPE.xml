@@ -40,8 +40,8 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>       
-        <node>QuestionCandSentSynonymMatcher</node>
-        <!-- <node>QuestionCandSentSimilarityMatcher</node>-->
+        <node>QuestionCandSentSimilarityMatcher</node>
+        <node>QuestionCandSentSynonymMatcher</node>        
         <!-- <node>QuestionCandSentDependencyMatcher</node>-->
         <node>AnswerChoiceCandAnsSimilarityScorer</node>
         <!--<node>AnswerChoiceCandAnsSynonymScorer</node>-->

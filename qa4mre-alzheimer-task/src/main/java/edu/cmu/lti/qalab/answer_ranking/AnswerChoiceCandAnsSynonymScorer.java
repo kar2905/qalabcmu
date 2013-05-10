@@ -27,6 +27,7 @@ public class AnswerChoiceCandAnsSynonymScorer extends JCasAnnotator_ImplBase {
 	public void initialize(UimaContext context)
 			throws ResourceInitializationException {
 		super.initialize(context);
+		K_CANDIDATES=Integer.parseInt((String)context.getConfigParameterValue("K_CANDIDATES"));
 	}
 
 	@Override
@@ -102,8 +103,14 @@ public class AnswerChoiceCandAnsSynonymScorer extends JCasAnnotator_ImplBase {
 
 					System.out.println(choiceList.get(j).getText() + "\t"
 							+ nnMatch);
-					
-					CandidateAnswer candAnswer = Utils.fromFSListToCollection(candSent.getCandAnswerList(),CandidateAnswer.class).get(j);//new CandidateAnswer(aJCas);
+					CandidateAnswer candAnswer = null;
+					if (candSent.getCandAnswerList() == null) {
+						candAnswer = Utils.fromFSListToCollection(
+								candSent.getCandAnswerList(),
+								CandidateAnswer.class).get(j);//
+					} else {
+						candAnswer = new CandidateAnswer(aJCas);
+					}
 					candAnswer.setText(answer.getText());
 					candAnswer.setQId(answer.getQuestionId());
 					candAnswer.setChoiceIndex(j);

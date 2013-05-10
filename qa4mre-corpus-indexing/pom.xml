@@ -26,11 +26,7 @@
 			<artifactId>qa4mre-base</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>edu.cmu.lti.oaqa.core.provider</groupId>
-			<artifactId>solr-provider</artifactId>
-			<version>1.0.12</version>
-		</dependency>
+		
 	</dependencies>
 	<scm>
 		<connection>scm:git:git@github.com:alkeshpatel11/hw1-alkeshku.git</connection>

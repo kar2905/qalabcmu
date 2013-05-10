@@ -20,7 +20,7 @@
         <name>INPUT_DIR</name>
         <value>
           <!-- <string>data/</string> -->
-          <string>/media/alkesh/Windows7_OS/Users/alkesh/git/qalabcmu/qa4mre-alzheimer-task/XMIs/</string>
+          <string>../qa4mre-alzheimer-task/XMIs/12-test/</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

@@ -65,9 +65,12 @@ public class QuestionCandSentSynonymMatcher extends JCasAnnotator_ImplBase {
 					.println("========================================================");
 			System.out.println("Question: " + question.getText());
 			String searchQuery = this.formSolrQuery(question);
+			if(searchQuery.trim().equals("")){
+				continue;
+			}
 			ArrayList<CandidateSentence> candidateSentList = new ArrayList<CandidateSentence>();
 			SolrQuery solrQuery=new SolrQuery();
-			solrQuery.add("fq", testDocId);
+			solrQuery.add("fq", "docid:"+testDocId);
 			solrQuery.add("q",searchQuery);
 			solrQuery.add("rows",String.valueOf(TOP_SEARCH_RESULTS));
 			solrQuery.setFields("*", "score");
