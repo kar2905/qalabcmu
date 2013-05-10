@@ -11,7 +11,7 @@
       <configurationParameter>
         <name>NOISE_THRESHOLD</name>
         <description>noise score</description>
-        <type>String</type>
+        <type>Float</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>
@@ -20,7 +20,7 @@
       <nameValuePair>
         <name>NOISE_THRESHOLD</name>
         <value>
-          <string>0.20</string>
+          <float>0.20</float>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

@@ -60,7 +60,7 @@
       <nameValuePair>
         <name>TOP_SEARCH_RESULTS</name>
         <value>
-          <string>10</string>
+          <integer>10</integer>
         </value>
       </nameValuePair>     
     </configurationParameterSettings>

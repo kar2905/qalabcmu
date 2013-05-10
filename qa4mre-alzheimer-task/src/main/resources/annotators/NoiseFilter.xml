@@ -35,19 +35,19 @@
       <nameValuePair>
         <name>QUALITY_THRESHOLD</name>
         <value>
-          <string>0.75</string>
+          <float>0.75</float>
         </value>
       </nameValuePair>
       <nameValuePair>
         <name>MIN_WORDS</name>
         <value>
-          <string>5</string>
+          <integer>5</integer>
         </value>
       </nameValuePair>
       <nameValuePair>
         <name>MIN_LENGTH</name>
         <value>
-          <string>25</string>
+          <integer>25</integer>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

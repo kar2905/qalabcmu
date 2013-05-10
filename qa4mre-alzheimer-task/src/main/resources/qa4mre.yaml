@@ -71,14 +71,12 @@ pipeline:
       - inherit: consumers.CasConsumerDescriptor
 
   # indexing
-  
   - inherit: ecd.phase
     name: SolrIndexer
     options: |
       - inherit: annotators.SolrIndexer
   
   # answer ranking and merging: XMIs -> results
-
   - inherit: ecd.phase
     name: QuestionCandSentSimilarityMatcher
     options: |
