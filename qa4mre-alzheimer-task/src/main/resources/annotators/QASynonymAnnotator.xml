@@ -28,13 +28,13 @@
       <nameValuePair>
         <name>FILE_NAME</name>
         <value>
-          <string>data/gene_ontology_ext.obo</string>
+          <string>model/synonym/gene_ontology_ext.obo</string>
         </value>
       </nameValuePair>     
       <nameValuePair>
         <name>GIGA_WORD</name>
         <value>
-          <string>data/cmudict.0.7a.gigaword.freq</string>
+          <string>model/synonym/cmudict.0.7a.gigaword.freq</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>     

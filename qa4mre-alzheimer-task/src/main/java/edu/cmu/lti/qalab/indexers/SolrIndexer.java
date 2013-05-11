@@ -107,19 +107,21 @@ public class SolrIndexer extends JCasAnnotator_ImplBase {
 				indexMap.put("synonyms",synonymList);
 
 				FSList fsDependencies = sent.getDependencyList();
-				ArrayList<Dependency> dependencies = Utils
-						.fromFSListToCollection(fsDependencies,
-								Dependency.class);
-				ArrayList<String> depList = new ArrayList<String>();
-				for (int j = 0; j < dependencies.size(); j++) {
-					String rel = dependencies.get(j).getRelation();
-					String gov = dependencies.get(j).getGovernor().getText();
-					String dep = dependencies.get(j).getDependent().getText();
-					String depText = rel + "(" + gov + "," + dep + ")";
-					depList.add(depText);
+				if (fsDependencies != null) {
+				  ArrayList<Dependency> dependencies = Utils
+				          .fromFSListToCollection(fsDependencies,
+				                  Dependency.class);
+				  ArrayList<String> depList = new ArrayList<String>();
+				  for (int j = 0; j < dependencies.size(); j++) {
+				    String rel = dependencies.get(j).getRelation();
+				    String gov = dependencies.get(j).getGovernor().getText();
+				    String dep = dependencies.get(j).getDependent().getText();
+				    String depText = rel + "(" + gov + "," + dep + ")";
+				    depList.add(depText);
+				  }
+				  
+				  indexMap.put("dependencies", depList);
 				}
-
-				indexMap.put("dependencies", depList);
 
 				SolrInputDocument solrInpDoc = this.wrapper
 						.buildSolrDocument(indexMap);
